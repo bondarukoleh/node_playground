@@ -1,0 +1,17 @@
+{
+  "name": "node_playground",
+  "version": "1.0.0",
+  "description": "Just playing with node",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./specs/*.spec.js"
+  },
+  "author": "oleh",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}
