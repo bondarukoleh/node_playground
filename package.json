@@ -4,12 +4,13 @@
   "description": "Just playing with node",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./specs/*.spec.js"
+    "test": "mocha ./specs --opts ./mocha.opts"
   },
   "author": "oleh",
   "license": "ISC",
   "dependencies": {
     "chai": "^4.2.0",
+    "log4js": "^3.0.6",
     "mocha": "^5.2.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"

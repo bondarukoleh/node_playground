@@ -1,0 +1,8 @@
+--recursive
+--timeout 5000
+#-R is for --reporter. Can also be landing, nyan, progress
+-R nyan
+#-r is for --require. run some file
+-r ./helpers/somePretestHelper.js
+#-g is for --grep. Run some spec that machs some word in describe or it
+#-g super
