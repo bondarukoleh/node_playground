@@ -1,15 +1,17 @@
-const jsonFile = require('./someJson')
-// console.log('%j', JSON.stringify(jsonFile));
+// const jsonFile = require('./someJson');
+// console.log(`It's json %j`, jsonFile, );
 
-// process.stdout - is a writable stream to stdout
-process.stdin.setEncoding('utf8')
+/* process.stdout - is a writable stream to stdout */
+/* Pass stream from one thing to node script thru pipe $> cat someJson.json | node nodeThingsTry.js */
+// process.stdin.setEncoding('utf8');
 process.stdin.on('readable', () => {
-  const chunk = process.stdin.read()
-  if(process.stdin.read() !== null){
-    process.stdout.write(`GOT DATA: ${process.stdin.read()}`)
-  }
-})
+    const chunk = process.stdin.read();
+    if (chunk !== null) {
+        console.log('Got some data!');
+        process.stdout.write(`DATA: ${chunk}`)
+    }
+});
 
 process.stdin.on('end', () => {
-  process.stdout.write(`Reading DONE}`)
-})
+    process.stdout.write(`\n Reading DONE`)
+});
