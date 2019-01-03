@@ -12,3 +12,7 @@ process.stdin.on('readable', () => {
 process.stdin.on('end', () => {
     process.stdout.write(`\n Reading DONE`)
 });
+const a = _ => console.log('operation done');
+const timer = setInterval(a, 1000);
+timer.unref()
+// setTimeout(_ => , 3000)
