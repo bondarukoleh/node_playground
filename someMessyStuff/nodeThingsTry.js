@@ -1,6 +1,3 @@
-// const jsonFile = require('./someJson');
-// console.log(`It's json %j`, jsonFile, );
-
 /* process.stdout - is a writable stream to stdout */
 /* Pass stream from one thing to node script thru pipe $> cat someJson.json | node nodeThingsTry.js */
 // process.stdin.setEncoding('utf8');
