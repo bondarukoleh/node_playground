@@ -25,3 +25,5 @@ function promise() {
 
 promise().then(console.log);
 
+console.log(8..toString());
+
