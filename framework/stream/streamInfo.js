@@ -23,9 +23,10 @@ designed purely for manipulating and managing other streams.
 */
 
 /*
-stream.Readable _read(size) Used for I/O sources that generate data
-stream.Writable _write(chunk, encoding,callback) - Used to write to an underlying output destination
-stream.Duplex _read(size), _write(chunk,encoding, callback) - A readable and writable stream,like a network connection
+stream.Readable _read(size) - Used for I/O sources that generate data
+stream.Writable _write(chunk, encoding, callback) - Used to write to an underlying output destination
+stream.Duplex _read(size), _write(chunk, encoding, callback) - A readable and writable stream,
+  like a network connection
 stream.Transform _flush(size), _transform(chunk,encoding, callback) - A duplex stream that changes
 data in some way, with no limitation on matching input
 

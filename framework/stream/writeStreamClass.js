@@ -37,7 +37,7 @@ const writeStream = new WriteStream();
 // http.get('http://www.manning.com', (response) => {
 //   response.pipe(writeStream)
 // });
-// fs.createReadStream(path.resolve(__dirname, '../data/text.txt')).pipe(writeStream);
+fs.createReadStream(path.resolve(__dirname, '../data/text.txt')).pipe(writeStream);
 
 /*
 Each of the stream module base classes emits various events, which depend on
@@ -45,9 +45,8 @@ whether the base class is readable, writable, or both. The fact that streams inh
 EventEmitter means you can bind to various standard events to manage streams, or
 create your own custom events to represent more domain-specific behavior.
 
-When working with stream.Readable instances (see table 5.2 for guidance on
-selecting a stream base class), the readable event is important because it signifies that
-the stream is ready for calls to stream.read().
+When working with stream.Readable instances, the readable event is important because 
+it signifies that the stream is ready for calls to stream.read().
 Attaching a listener to data will cause the stream to behave like the old streams
 API, where data is passed to data listeners when it’s available, rather than through
 calls to stream.read().
@@ -58,7 +57,6 @@ character, and won’t receive more data. There’s also a close event that repr
 case where the underlying resource has been closed, which is distinct from end, and
 the Node API documentation notes that not all streams will emit this event, so a rule of
 thumb is to bind to end.
-
 */
 
 
