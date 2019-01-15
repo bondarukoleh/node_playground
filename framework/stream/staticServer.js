@@ -29,15 +29,17 @@ server.listen(port);
 
 
 setTimeout(() => {
-  http.get('http://localhost:3000/errorPage', (response) => {
+  http.get('http://localhost:3000/getIndex', (response) => {
     const { statusCode } = response;
-    response.on('data', (data) => {
-      console.log('SUCCESS:', data);
-      const writeStream = fs.createWriteStream(`${__dirname}/streamData/destinationFile.js`)
-      writeStream.write(data)
-      writeStream.end()
-      // is equal to - fs.writeFileSync(`${__dirname}/streamData/destinationFile.js`, data)
-    })
+    if(statusCode === 200){
+      response.on('data', (data) => {
+        console.log('SUCCESS:', data);
+        const writeStream = fs.createWriteStream(`${__dirname}/streamData/destinationFile.js`)
+        writeStream.write(data)
+        writeStream.end()
+        // is equal to - fs.writeFileSync(`${__dirname}/streamData/destinationFile.js`, data)
+      })
+    }
     if(statusCode === 500){
       console.log('SERVER ERROR:', response.headers.message);
     }
