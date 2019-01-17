@@ -38,7 +38,7 @@ const writeStream = new WriteStream();
 // http.get('http://www.manning.com', (response) => {
 //   response.pipe(writeStream)
 // });
-fs.createReadStream(path.resolve(__dirname, '../data/text.txt')).pipe(writeStream);
+// fs.createReadStream(path.resolve(__dirname, '../data/text.txt')).pipe(writeStream);
 
 /*
 Each of the stream module base classes emits various events, which depend on
@@ -61,3 +61,17 @@ thumb is to bind to end.
 */
 
 
+class GreenStream extends Writable{
+  constructor(opts){
+    super(opts)
+  }
+
+  _write(chunk, encode, cb){
+    process.stdout.write(`green collor text:) -> ${chunk}`);
+    cb()
+  }
+}
+process.stdin.pipe(new GreenStream()); 
+
+/* another usage
+cat ./data/text.txt | node ./writeStreamClass.js */

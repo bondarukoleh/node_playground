@@ -63,16 +63,26 @@ child process stdin
 process.stdout process.stderr
 
 A readable stream is an abstraction for a source from which data can be consumed.
+allows to read data from the stream
 An example of that is the fs.createReadStream method.
+Reading data from client request on the server.
 
 A writable stream is an abstraction for a destination to which data can be written.
+allows to write data to the strem
 An example of that is the fs.createWriteStream method.
+Writing data to response to the client from the server.
 
 A duplex streams is both Readable and Writable. An example of that is a TCP socket.
+allows to read and write data to the stream
 
 readable.pipe(duplexA).pipe(duplexB).pipe(writable)
 # Which is equivalent to:
 readable.pipe(duplexA)
 duplexA.pipe(duplexB)
 duplexB.pipe(writable)
+
+So since stream is inherited from EventEmiter - we can rely on events that is fired.
+When we create a read strem, createReadStream cuts source on pieces, and collects them
+in inner buffer that it has. When the inner buffer is full, it pushes this chunk to the stream.
+Thats when, "data" event fired, it tells us that chunk data is passed to the stream. 
 */
