@@ -1,35 +1,36 @@
-const {Writable} = require('stream');
+const { Writable } = require('stream');
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
 class WriteStream extends Writable {
-    constructor(options) {
-        super(options);
-        this.on('drain', _ => console.log('drain event is FIRED'));
-        this.on('data', data => console.log(`data is FIRED: ${data}`));
-        this.on('exit', (result) => console.log(`Reading finished, result: ${result}`));
-        this.on('pipe', _ => console.log('pipe is FIRED'));
-        this.on('unpipe', _ => console.log('unpipe is FIRED'));
-        this.on('close', _ => console.log('close is FIRED'));
-        this.on('finish', _ => console.log('finish is FIRED'));
-        this.on('thisIsTheEnd', console.log);
-        this.on('error', (error) => {
-            console.log(`Error appeared: ${error}`),
-                this.emit('finish'),
-                process.exit(1)
-        });
-    }
+  constructor(options) {
+    super(options);
+    this.on('drain', _ => console.log('drain event is FIRED'));
+    this.on('data', data => console.log(`data is FIRED: ${data}`));
+    this.on('exit', result => console.log(`Writing finished, result: ${result}`));
+    this.on('pipe', _ => console.log('pipe is FIRED'));
+    this.on('unpipe', _ => console.log('unpipe is FIRED'));
+    this.on('close', _ => console.log('close is FIRED'));
+    this.on('finish', _ => console.log('finish is FIRED'));
+    this.on('thisIsTheEnd', console.log);
+    this.on('error', (error) => {
+      console.log(`Error appeared: ${error}`),
+        this.emit('finish'),
+        process.exit(1)
+    });
+  }
 
-    _write(chunk, encode, cb) {
-        console.log(`_write is called, current chunk: "${chunk}"`);
-        cb()
-    }
+  _write(chunk, encode, cb) {
+    console.log(`_write is called, current chunk: "${chunk}"`);
+    /*Yeah you're right, it's not writing anywhere, we just console.log*/
+    cb()
+  }
 
-    end(cb) {
-        super.end(cb);
-        this.emit('thisIsTheEnd', 'thisIsTheEnd is FIRED')
-    }
+  end(cb) {
+    super.end(cb);
+    this.emit('thisIsTheEnd', 'thisIsTheEnd is FIRED')
+  }
 }
 
 const writeStream = new WriteStream();

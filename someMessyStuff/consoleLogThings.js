@@ -1,6 +1,7 @@
+const util = require('util')
+
 // const jsonFile = require('./someJson');
 // console.log(`It's json %j`, jsonFile, );
-
 
 /* Run node consoleLogThings.js 2> log.log and error will be in log file because 2 - is responsible for error stream
 Standard streams come in three flavors: stdin, stdout, and stderr. In Unix terminals,
@@ -8,7 +9,6 @@ these are referred to with numbers. 0 is used for standard input, 1 is standard 
 and 2 is standard error.  Windows - same */
 console.error('This is Error Message, goes to stderr');
 console.log('Simple message');
-
 
 function res(resFunc) {
     resFunc('Hello');
@@ -26,4 +26,7 @@ function promise() {
 promise().then(console.log);
 
 console.log(8..toString());
+
+console.log(process.memoryUsage());
+console.log(util.inspect(Object, {depth:null, showHidden: true}))
 
