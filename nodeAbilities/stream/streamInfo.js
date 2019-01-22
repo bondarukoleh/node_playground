@@ -85,4 +85,7 @@ So since stream is inherited from EventEmiter - we can rely on events that is fi
 When we create a read strem, createReadStream cuts source on pieces, and collects them
 in inner buffer that it has. When the inner buffer is full, it pushes this chunk to the stream.
 Thats when, "data" event fired, it tells us that chunk data is passed to the stream. 
+
+The fs.createReadStream method takes an options argument that can include a bufferSize property.
+and each chunk in every stream can be specific size - it increases memory usage efficiency for streaming them.
 */

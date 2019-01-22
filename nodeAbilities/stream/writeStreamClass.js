@@ -60,7 +60,6 @@ the Node API documentation notes that not all streams will emit this event, so a
 thumb is to bind to end.
 */
 
-
 class GreenStream extends Writable{
   constructor(opts){
     super(opts)
