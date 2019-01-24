@@ -30,3 +30,4 @@ console.log(8..toString());
 console.log(process.memoryUsage());
 console.log(util.inspect(Object, {depth:null, showHidden: true}))
 
+process.stdout.write('From process.stdout.write')

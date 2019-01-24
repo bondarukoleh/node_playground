@@ -5,6 +5,11 @@ object that you can add properties to. exports.myFunc is shorthand for
 module.exports.myFunc.
 As a result, if exports is set to anything else, it breaks the reference between
 module.exports and exports
+
+ATTENTION: Modules are cached globally in Node, so
+if we have another file that also requires config.json and we modify it, it’s modified
+everywhere that module is used in our application. Better require it,
+and work localy with config object.
 */
 
 const module2 = require('./module2');
