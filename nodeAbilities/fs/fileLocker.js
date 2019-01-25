@@ -46,6 +46,7 @@ setTimeout(() => {
 
 
 /* Usage */
+/*
 lock((err) => {
   if(err) {
     console.log(`Some process updating config already:`, err);
@@ -61,3 +62,4 @@ lock((err) => {
     console.log('Now everyone can update config, it is unlocked.');
   })
 });
+*/
