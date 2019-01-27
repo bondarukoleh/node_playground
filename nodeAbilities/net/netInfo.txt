@@ -23,3 +23,23 @@ Transport Layer Security. Node’s tls module is implemented using OpenSSL.
 This type of encryption is called public key cryptography. Both clients and servers
 must have private keys. The server can then make its public key available so clients can encrypt messages.
 To decrypt these messages, access to the server’s private key is required.
+
+UDP. Sending a datagram requires a buffer for the payload, an offset to indicate where in the buffer
+the message starts, the message length, the server port, the remote IP, and an optional
+callback that will be triggered when the message has been sent:
+var message = 'Sample message';
+socket.send(new Buffer(message), 0, message.length, port, remoteIP);
+
+UDP packets are comparatively simple. They’re composed of a source port, the destination
+port, datagram length, checksum, and the payload data. The length is the total
+size of the packet—the header size added to the payload’s size. When deciding
+on your application’s buffer size for UDP packets, you should remember that the
+length passed to socket.send is only for the buffer (payload), and the overall packet
+size must be under the MTU on the network. The structure of a datagram looks like
+the following.
+
+TCP connections are different from UDP, and this is apparent in the design of Node’s
+networking API. TCP connections are represented as a stream of bidirectional events, so
+sending a message back to the sender is straightforward—once a client has connected
+you can write messages to it at any time using client.write. UDP, on the other hand,
+is connectionless—messages are received without an active connection to the client.
