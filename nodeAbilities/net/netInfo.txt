@@ -24,7 +24,7 @@ This type of encryption is called public key cryptography. Both clients and serv
 must have private keys. The server can then make its public key available so clients can encrypt messages.
 To decrypt these messages, access to the server’s private key is required.
 
-UDP. Sending a datagram requires a buffer for the payload, an offset to indicate where in the buffer
+UDP. Duplex, sending a datagram requires a buffer for the payload, an offset to indicate where in the buffer
 the message starts, the message length, the server port, the remote IP, and an optional
 callback that will be triggered when the message has been sent:
 var message = 'Sample message';
@@ -38,8 +38,14 @@ length passed to socket.send is only for the buffer (payload), and the overall p
 size must be under the MTU on the network. The structure of a datagram looks like
 the following.
 
-TCP connections are different from UDP, and this is apparent in the design of Node’s
+TCP, duplex, connections are different from UDP, and this is apparent in the design of Node’s
 networking API. TCP connections are represented as a stream of bidirectional events, so
 sending a message back to the sender is straightforward—once a client has connected
 you can write messages to it at any time using client.write. UDP, on the other hand,
 is connectionless—messages are received without an active connection to the client.
+
+HTTP.
+The HTTP protocol is stateless and built on TCP,
+and Node’s HTTP module is similarly built on top of its TCP module. On of the main difference 
+between TCP server and HTTP - HTTP closes socket connection as soon as it sends response,
+but TCP - can keep connection while client is connected, because of duplex.

@@ -33,7 +33,7 @@ server.listen(port, _ => {
   getClientId((err, id) => {
     if(err) console.log('Error from client:', err);
     expect(id).to.eq('1', `Id of first connection should be 1, got: ${id}`)
-    /* Second request should be after first. It's ugly tests, sould be emplemented with promises. */
+    /* Second request should be after first. It's ugly test, sould be emplemented with promises. */
     getClientId((err, id) => {
       if(err) console.log('Error from client:', err);
       expect(id).to.eq('2', `Id of second connection should be 2, got: ${id}`)
@@ -42,7 +42,7 @@ server.listen(port, _ => {
 });
 
 function getClientId(done) {
-  const client = net.connect(6000, 'localhost', _ => console.log('Client connected.'));
+  const client = net.connect(port, 'localhost', _ => console.log('Client connected.'));
   client.on('data', data => {
     const response = data.toString();
     const id = response.split('- ')[1];
