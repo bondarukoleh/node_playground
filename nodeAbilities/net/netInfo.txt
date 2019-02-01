@@ -49,3 +49,48 @@ The HTTP protocol is stateless and built on TCP,
 and Node’s HTTP module is similarly built on top of its TCP module. On of the main difference 
 between TCP server and HTTP - HTTP closes socket connection as soon as it sends response,
 but TCP - can keep connection while client is connected, because of duplex.
+
+DNS.
+When the http or net modules are used to connect to remote servers,
+Node will look up IP addresses using dns.lookup internally.
+Type | Method | Description
+A | dns.resolve | An A record stores the IP address. It can have an associated
+time-to-live (TTL) field to indicate how often the record should be
+updated.
+TXT | dns.resolveTxt | Text values that can be used by other services for additional features
+built on top of DNS.
+SRV | dns.resolveSrv | Service records define “location” data for a service; this usually
+includes the port number and hostname.
+NS | dns.resolveNs | Used for name servers themselves.
+CNAME | dns.resolveCname | Canonical name records. These are set to domain names rather
+than IP addresses.
+
+The dns.lookup method can be used to look up either IPv4 or IPv6 addresses. When
+looking up multiple addresses, it can be faster to use dns.resolve instead.
+
+TLS.
+Node’s encryption module, tls, uses OpenSSL Transport Layer Security/Secure
+Socket Layer (TLS/SSL). This is a public key system, where each client and server both
+have a private key. The server makes its public key available so clients can encrypt subsequent
+communications in a way that only that server can decrypt again.
+Public key cryptography is dependent on public-private key pairs—a pair is required for
+both clients and servers. But an additional file is needed: the public key of the Certificate
+Authority (CA).
+That means before you can run any Node examples, you’ll need certificates. The
+OpenSSL command-line tools are required for this.
+The openssl tool takes a command as the first argument, and then options as subsequent
+arguments. For example, openssl req is used for X.509 Certificate Signing
+Request (CSR) management.
+To make a certificate signed by an authority you control,
+you’ll need to issue the following commands:
+■ genrsa—Generate an RSA certificate; this is our private key.
+■ req—Create a CSR.
+■ x509—Sign the private key with the CSR to produce a public key.
+
+openssl genrsa -out server.pem 1024 /*Create server’s private key using 1024 bits*/
+openssl req -new -key server.pem -out server-csr.pem /* Create CSR—this is where you enter your hostname */
+openssl x509 -req -in server-csr.pem -signkey server.pem \ -out server-cert.pem /* Sign server’s private key and output a public key*/
+
+openssl genrsa -out client.pem 1024
+openssl req -new -key client.pem -out client-csr.pem
+openssl x509 -req -in client-csr.pem -signkey client.pem \ -out client-cert.pem
