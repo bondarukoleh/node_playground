@@ -38,4 +38,27 @@ EACCES or EPERM error - exists but node cannot access it;
 
 SPAWN
 Same as execFile - but returns a stream. Spawn method returns a ChildProcess object containing stdin,
-stdout, and stderr stream objects
+stdout, and stderr stream objects.
+
+EXEC
+This method will spawn a subshell and execute the command in that shell and buffer generated data. 
+
+If you need to execute commands in a shell, you can use exec. The exec method runs
+the commands with /bin/sh or cmd.exe (on Windows). Running commands in a shell
+means you have access to all the functionality provided by your particular shell (like
+pipes, redirects, and backgrounding).
+
+Comparing to execFile and spawn, exec doesn’t have an args argument because exec allows us to execute
+more than one command on a shell. When using exec, if we need to pass arguments to the command,
+they should be part of the whole command string.
+
+exec should be used when we need to utilize shell functionality such as pipe, redirects, backgrounding…
+
+If we want to run command with arguments that user provides - it can be dangerous.
+he  can provide something like xmllint --schema ; rm -rf / ; the.xml
+";" - means start a new command.
+If you need to run an application and don’t need shell facilities, it’s safer (and
+slightly faster) to use execFile instead:
+cp.execFile('xmllint', ['--schema', req.query.schema, 'the.xml']);
+Here this malicious injection attack would fail since it’s not run in a shell and the external
+application likely wouldn’t understand the argument and would raise an error.
