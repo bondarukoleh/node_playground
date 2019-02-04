@@ -1,0 +1,41 @@
+External app:
+(App type)    Node -> Streaming -> Use a subshell? -> No -> fork 
+              Non-Node:
+(Interface type)        Streaming -> Use a subshell? -> No -> spawn
+                        Buffered (callback) -> Use a subshell? -> No -> execFile
+                                                                -> Yes -> exec
+  The child_process module provides four different methods for executing external
+applications. All methods are asynchronous. The right method will depend on
+what you need, as shown in figure 8.1.
+■ execFile—Execute an external application, given a set of arguments, and callback
+with the buffered output after the process exits.
+■ spawn—Execute an external application, given a set of arguments, and provide
+a streaming interface for I/O and events for when the process exits.
+■ exec—Execute one or more commands inside a shell and callback with the
+buffered output after the process exits.
+■ fork—Execute a Node module as a separate process, given a set of arguments,
+provide a streaming and evented interface like spawn, and also set up an interprocess
+communication (IPC) channel between the parent and child process.
+
+Windows/UNIX has a PATH environment variable. PATH contains a list of directories where executable programs
+exist. If a program exists in one of the listed directories, it can be located without
+needing an absolute or relative path to the application.
+
+
+EXECFILE
+The output from our external app is buffered internally. When our external app exits, our callback is called
+with the output.execvp behind the scenes will search for applications using PATH when no
+absolute or relative location is provided. We can see this in our earlier example, since
+directories to common system applications like echo usually exist in PATH already.
+If the directory containing the application isn’t in PATH, you’ll need to provide the
+location explicitly like you would on the command line:
+cp.execFile('/absolute/path/to/app' ...
+cp.execFile('../relative/path/to/app' ...
+Add path before any execFile calls:
+process.env.PATH += ':/a/new/path/to/executables';
+ENOENT - app doesn't exist;
+EACCES or EPERM error - exists but node cannot access it;
+
+SPAWN
+Same as execFile - but returns a stream. Spawn method returns a ChildProcess object containing stdin,
+stdout, and stderr stream objects
