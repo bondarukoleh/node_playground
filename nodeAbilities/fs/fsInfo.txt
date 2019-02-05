@@ -29,6 +29,21 @@ fsync(2) | fs.fsync | Synchronizes file data with disk
 write(2) | fs.write | Writes data to a file
 read(2) | fs.read | Reads data from a file
 
+'a' - Open file for appending. The file is created if it does not exist.
+'ax' - Like 'a' but fails if the path exists.
+'a+' - Open file for reading and appending. The file is created if it does not exist.
+'ax+' - Like 'a+' but fails if the path exists.
+'as' - Open file for appending in synchronous mode. The file is created if it does not exist.
+'as+' - Open file for reading and appending in synchronous mode. The file is created if it does not exist.
+'r' - Open file for reading. An exception occurs if the file does not exist.
+'r+' - Open file for reading and writing. An exception occurs if the file does not exist.
+'rs+' - Open file for reading and writing in synchronous mode.
+ Instructs the operating system to bypass the local file system cache.
+ 'w' - Open file for writing. The file is created (if it does not exist) or truncated (if it exists).
+'wx' - Like 'w' but fails if the path exists.
+'w+' - Open file for reading and writing. The file is created (if it does not exist) or truncated (if it exists).
+'wx+' - Like 'w+' but fails if the path exists.
+
 File descriptors (FDs) are integers (indexes) associated with open files within a process
 managed by the operating system. As a process opens files, the operating system keeps
 track of these open files by assigning each a unique integer that it can then use to look

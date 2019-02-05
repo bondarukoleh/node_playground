@@ -62,3 +62,54 @@ slightly faster) to use execFile instead:
 cp.execFile('xmllint', ['--schema', req.query.schema, 'the.xml']);
 Here this malicious injection attack would fail since it’s not run in a shell and the external
 application likely wouldn’t understand the argument and would raise an error.
+
+Detaching a child process
+Made to not be affected if this process will fail. It's like an different process.
+You have a long-running external application that you want Node to start but then be
+able to exit with the child process still running.
+
+Attached child process exits when Node exits but Detached child process is process leader and lives
+independent of Node.
+Normally, any child process will be terminated when the parent Node process is terminated.
+Child processes are said to be attached to the parent process. But the spawn
+method includes the ability to detach a child process and promote it to be a process
+group leader. In this scenario, if the parent is terminated, the child process will continue
+until finished.
+This scenario is useful when you want Node to set up the execution of a longrunning
+external process and you don’t need Node to babysit it after it starts.
+This is the detached option, configurable as part of a third options parameter to
+spawn:
+const detachedProcess = cp.spawn('./longrunApp', [], { detached: true });
+
+The stdio option defines where the I/O from a child process will be redirected.
+It takes either an array or a string as a value.The string values are simply shorthands that
+will expand to common array configurations.
+The array is structured such that the indexes correspond to file descriptors in the
+child process and the values indicate where the I/O for the particular file descriptor
+(FD) should be redirected.
+By default, stdio is configured as
+stdio: 'pipe'
+which is a shorthand for the following array values:
+stdio: [ 'pipe', 'pipe', 'pipe' ]
+
+The pipe value connects the parent and child processes because these streams stay
+open, waiting to write or read data. But sometimes, we want to disconnect the
+two in order to exit the Node process. A brute-force approach would be to simply
+destroy all the streams created:
+child.stdin.destroy();
+child.stdout.destroy();
+child.stderr.destroy();
+Although this would work, given our intent to not use them, it’s better to not create
+the streams in the first place. Instead, we can assign a file descriptor if we want to
+direct the I/O elsewhere or use ignore to discard it completely.
+
+The child process will live on because it’s detached and the I/O is
+disconnected from the parent. But the parent still has an internal reference to the
+child process and won’t exit until the child process has finished and the reference has been removed.
+You can use the child.unref() method to tell Node not to include this child process
+reference in its count.
+
+To make a complitely separate child, detach a process requires three things:
+■ The detached option must be set to true so the child becomes its own process leader.
+■ The stdio option must be configured so the parent and child are disconnected.
+■ The reference to the child must be disconnected in the parent using child.unref().
