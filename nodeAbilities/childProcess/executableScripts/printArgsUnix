@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-/*Execute node command wherever it’s found in user’s environment.
+/* Execute node command wherever it’s found in user’s environment.
 Don't forget to make file executable - $> chmod +x printArgsUnix.js */
 
 const argsParser = require('minimist');
 const envArgs = process.argv.slice(2);
 const args = argsParser(envArgs);
-const toJson = JSON.stringify;
 
-console.log(`You pass such parameters to executable file: ${toJson(args)}. \n That's all folks.`);
+console.log('You pass such parameters to executable file: %j', args, `\n That's all folks.`);

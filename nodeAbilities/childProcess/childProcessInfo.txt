@@ -63,7 +63,7 @@ cp.execFile('xmllint', ['--schema', req.query.schema, 'the.xml']);
 Here this malicious injection attack would fail since it’s not run in a shell and the external
 application likely wouldn’t understand the argument and would raise an error.
 
-Detaching a child process
+DETACH a child process
 Made to not be affected if this process will fail. It's like an different process.
 You have a long-running external application that you want Node to start but then be
 able to exit with the child process still running.
@@ -113,3 +113,39 @@ To make a complitely separate child, detach a process requires three things:
 ■ The detached option must be set to true so the child becomes its own process leader.
 ■ The stdio option must be configured so the parent and child are disconnected.
 ■ The reference to the child must be disconnected in the parent using child.unref().
+
+FORK
+To made a big, computation heavily work (like webworker in browser), in separate process.
+Running these types of tasks in a forked process allows the main application to stay responsive.
+Another use of forking is for sharing file descriptors,
+where a child can accept an incoming connection received by the parent process.
+
+Node provides a nice way to communicate between other Node programs. Under
+the hood, it sets up the following stdio configuration:
+stdio: [ 0, 1, 2, 'ipc' ]
+This means that, by default, all output and input are directly inherited from the parent;
+there’s no child.stdin, child.stdout, or child.stderr:
+const cp = require('child_process');
+const child = cp.fork('./myChild');
+So af far as I get - that means that child.stdout same as parent, you don't have access to it.
+If you want to have 
+const cp = require('child_process');
+const child = cp.fork('./myChild', { silent: true }); // silent option gives you ability to have child.stdout.
+
+The fork command runs a Node module in a separate process and sets up a communications
+inter-process communication, IPC channel with parent.
+The fork method opens up an IPC channel that allows message passing between Node
+processes. On the child side, it exposes process.on('message') and process.send()
+as mechanisms for receiving and sending messages. On the parent side, it provides
+child.on('message') and child.send().
+
+Sending data between the processes maintains the type information, which means you
+can send any valid JSON value over the wire.
+child.send(230);
+child.send('a string');
+child.send(true);
+child.send(null);
+child.send({ an: 'object' });
+
+If you need to destroy channel with child child.disconnect(), it  only destroys connection,
+not ended the child.
