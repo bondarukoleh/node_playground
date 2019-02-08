@@ -1,0 +1,5 @@
+express listening for NODE_ENV global property.
+const app = require('express')();
+app.configure('development', function() { // this cb will run only if process.env.NODE_ENV === development
+  // do some work
+});

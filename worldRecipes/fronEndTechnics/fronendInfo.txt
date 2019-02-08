@@ -1,0 +1,2 @@
+To use DOM on backend - use jsdom
+To use Node on frontentd - use browserify node.js -o bundle.js
