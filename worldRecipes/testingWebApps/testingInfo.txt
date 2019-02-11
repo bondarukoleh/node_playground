@@ -1,0 +1,5 @@
+The session handling that Express uses from Connect is based around a cookie.
+Once the cookie has been set, it can be used to load the user’s session. That means
+that to write a test that accesses a secure part of your application, you’ll need to make
+a request that signs in the user, grabs the cookies, and then use the cookies for subsequent
+requests.

@@ -3,3 +3,26 @@ const app = require('express')();
 app.configure('development', function() { // this cb will run only if process.env.NODE_ENV === development
   // do some work
 });
+
+
+Curl
+curl -H "Content-Type: application/json" -X POST -d '{ "page": { "title": "Home" } }' http://localhost:3000/pages
+First we specify the Content-Type using the -H option B. Next, the request is set to
+use POST, and the request body is included as a JSON string C. The URL is /pages
+because we’re creating a resource D.
+Curl is a useful tool for exploring APIs, once you understand the basic options. The
+ones to remember are -H for setting headers, -X for setting the HTTP method, and -d
+for the request body.
+
+Accept vs Content-Type
+Just remember that Accept is used to ask the server for a specific format, and Content-
+Type is used to tell the server what format you’re sending it. It sometimes makes sense
+to include both in a single request!
+
+EXPRESS EventEmitter app.
+Fortunately, Express includes a reference to the app object in the request. Route
+handlers, which accept the req, res parameters, always have access to app in res.app.
+The app object inherits from EventEmitter, so we can use it to broadcast when things
+happen. If your route handler creates and saves new users, then it can also call
+response.app.emit('user:created', user)
+app.on('user:created', emails.welcome);
