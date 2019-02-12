@@ -3,3 +3,35 @@ Once the cookie has been set, it can be used to load the user’s session. That 
 that to write a test that accesses a secure part of your application, you’ll need to make
 a request that signs in the user, grabs the cookies, and then use the cookies for subsequent
 requests.
+
+Assertion -  A logical statement that allows you to test expressions.
+Supported by the assert core module; for example: assert.equal(user.email, 'name@example.com');
+
+Test case - One or more assertions that test a particular concept.
+In Mocha, a test case looks like this:
+it('should calculate the square of a number', function() {
+  assert.equal(square(4), 16);
+});
+
+Test harness - A program that runs tests and collates output.
+The resulting reports help diagnose problems when tests fail.
+This builds on the previous example, so with Mocha a test harness looks like this:
+describe('Some suit', () => {
+  it('Some case', () => {
+    asser.equal()
+  })
+})
+
+Fixture - Test data that is usually prepared before tests are run.
+
+Mock - An object that simulates another object. Mocks are often used to replace I/O operations
+that are either slow or difficult to run in unit tests; for example, downloading
+data from a remote web API, or accessing a database.
+
+Stub - A method stub is used to replace functionality for the duration of tests. For example,
+methods used to communicate with an I/O source like a disk or remote API can be
+stubbed to return predefined data.
+
+Continuous integration server - A CI server runs automated tests whenever a project is updated through a version
+control server.
+

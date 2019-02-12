@@ -30,7 +30,7 @@ class RestClient {
         return resp
       }
     } catch(e){
-      console.log('EROOOOOOOOOR');
+      console.log('EROR');
       console.log(e)
     }
   }

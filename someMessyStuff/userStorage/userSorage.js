@@ -1,3 +1,4 @@
+// stub
 const registerMember = (name) => ({ name });
 
 class Storage {

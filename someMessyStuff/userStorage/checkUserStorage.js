@@ -1,13 +1,13 @@
 require('./userSorage');
 
-async function check() {
-  const user1 = await global.userStorage.getUserByName('testingUser123');
-  console.log(`ASKED for testingUser123, got:`, user1);
-  global.userStorage.releaseUserByName('testingUser123');
+async function checkUserStorage() {
+  const user1 = await global.userStorage.getUserByName('testingUser');
+  console.log(`ASKED for testingUser, got:`, user1);
+  global.userStorage.releaseUserByName('testingUser');
   console.log('USER RELEASED');
-  const user2 = await global.userStorage.getUserByName('testingUser123');
-  console.log(`ASKED for testingUser123 second time, got:`, user2);
-  global.userStorage.releaseUserByName('testingUser123');
+  const user2 = await global.userStorage.getUserByName('testingUser');
+  console.log(`ASKED for testingUser second time, got:`, user2);
+  global.userStorage.releaseUserByName('testingUser');
   console.log('USER RELEASED');
   const any1 = await global.userStorage.getAnyUser();
   console.log('any1');
@@ -21,4 +21,4 @@ async function check() {
   console.log(global.userStorage.toString());
 }
 
-check()
+checkUserStorage()
