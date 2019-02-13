@@ -35,3 +35,48 @@ stubbed to return predefined data.
 Continuous integration server - A CI server runs automated tests whenever a project is updated through a version
 control server.
 
+Automated test framework, generally refers to a program that sets up
+the runtime environment and runs tests, and then collects and compares the results.
+
+Test-Driven Development (TDD) focuses on the “inside-out” perspective,
+meaning we create tests from a developer’s perspective. Answering “Is this code correct?”
+The methodology focuses specifically on “unit tests.”
+The developer takes a requirement and then converts it into a specific test case.
+Then the developer writes the code to pass those particular test cases only.
+Test-Driven Development (TDD) forces developers to focus on product requirements before writing code.
+steps:
+Step 1: Add a test
+Step 2: Run all tests and make sure if the new test fails
+Step 3: Write the code
+Step 4: Run all Tests (with new) make sure if they pass 
+
+Behavior Driven-Development (BDD) focuses on the “outside-in” perspective,
+meaning we test behaviors which are related to business results. 
+BDD is largely an extension of the TDD methodology.
+The developer defines a test case, tests code to verify that the test case will fail.
+Next, the developer writes the code necessary to pass the test case and then tests the code
+to ensure compliance. Where BDD differs from TDD is how the test case is specified.
+BDD tests cases exist in a way that specifies the desired behavior.
+The clear language of BDD test cases makes it simple for all stakeholders in a development project
+to understand. So it's more for bussiness.
+It's where User story comes into play.
+story: description.
+As a user – “who”: primary stakeholder of a user story (As a Spotify subscriber)
+In order to “what” effect of a user story on primary stakeholder (In order to play my favorite album)
+I want to “why”: value to primary stakeholder (I want to search albums from the Spotify catalog)
+
+Scenario 1:
+Given "Highway to Hell" album – condition;
+And the user is a subscriber of the Spotify service – condition;
+When user searches for "Highway to Hell" from the Spotify Catalog – when the event is triggered
+Then Spotify service will show "Highway to Hell" album in catalog for the user – Expected outcome
+
+Acceptance Test-Driven Development (ATDD) aims to ensure that acceptance tests exist before writing 
+any code. The acceptance test is written from the users perspective.
+“Is the code doing what it is intended to do?”
+As far as I get - light, ACCEPTANSE user stories.
+
+Given Album is licensed to Spotify catalog – setup, specified state
+And User is a paid subscriber – setup continued
+When User selects album for Spotify catalog – trigger, an action  or event occurs
+Then Album is streamed for the user – verification; output is produced, or state has changed
