@@ -4,7 +4,7 @@
   "description": "Just playing with node",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./specs --opts ./mocha.opts"
+    "test": "./node_modules/mocha/bin/mocha ./specs --opts ./mocha.opts"
   },
   "author": "oleh",
   "license": "ISC",
