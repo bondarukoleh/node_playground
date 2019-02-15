@@ -80,3 +80,46 @@ Given Album is licensed to Spotify catalog – setup, specified state
 And User is a paid subscriber – setup continued
 When User selects album for Spotify catalog – trigger, an action  or event occurs
 Then Album is streamed for the user – verification; output is produced, or state has changed
+
+You can test database in some ways:
+- Preload data with database dumbs. (but if DB tables changes - you should change code a lot)
+- Creating test data in your test.
+- Mocking the database.
+
+Integration testing.
+This means testing groups of modules. Here we’ve used the term to distinguish between
+tests that access a real database, and tests that somehow replace database access
+with a compatible API. You should use integration tests to ensure your database behaves
+the way you expect.
+Integration tests can help verify performance, but this is highly dependent on your test
+data. It may cause your tests to be more closely coupled to the database, which means
+that if you change the database or database API, you may need to change your test code
+as well.
+
+Database dump.
+This is one way to preload data (before tests) into a test database. It requires a lot of
+work up front to prepare the data, and the data has to be maintained if you ever change
+the database schema. The added maintenance work is offset by the simplicity of the
+approach—you don’t need any special tools to create SQL, Mongo, or other data files.
+You should use this technique when you’re writing tests for a project that already has a
+database. Perhaps you’re moving to Node from another programming language or platform,
+and you’re using the existing database. You can take production data—being careful
+to remove or obscure any personal information, or other sensitive information—and
+then drop the resulting database export into your project’s repository.
+
+ORM fixture
+Rather than creating a file to import before the tests are run, you can use your ORM module
+to create and store data in your test code. This can make it hard to maintain over
+time—any schema changes mean tests have to be carefully updated.
+You should use this technique for tests where algorithms are closely tied to the underlying
+data. By keeping the data near the code that uses it, any relating issues can be easier
+to understand and fix.
+
+Mocks and stubs
+Mocks are objects that simulate other objects. In this chapter you saw Sinon.JS, a library
+for handling mocks and stubs for tests.
+You should use mocks when you don’t want to access an I/O resource. For example, if
+you’re writing tests for code that talks to a payment provider like WorldPay or Stripe, then
+you’d create objects that behave like Stripe’s API without actually communicating with
+Stripe. It’s generally safer to ensure tests never need to access the internet, so anything
+that hits the network should be mocked.
