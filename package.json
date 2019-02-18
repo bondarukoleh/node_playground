@@ -4,8 +4,12 @@
   "description": "Just playing with node",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha ./specs --opts ./mocha.opts"
+    "test": "./node_modules/mocha/bin/mocha ./specs --opts ./mocha.opts",
+    "lint": "/Users/olehbondaruk/learn/node_playground/node_modules/eslint/bin/eslint.js \"**/*.js\""
   },
+  "pre-commit": [
+    "lint"
+  ],
   "author": "oleh",
   "license": "ISC",
   "dependencies": {
@@ -19,5 +23,8 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "serve-static": "^1.13.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.14.0"
   }
 }

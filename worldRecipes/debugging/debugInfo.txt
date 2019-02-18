@@ -1,0 +1,30 @@
+Explicit exceptions
+if(badCondition){throw new Error('message')};
+
+THROW:
+- should be used only in synchronous functions, or before async action occeured in async function,
+witch make it still only in sync code;
+- always throw as Error or it's child;
+- Don’t throw inside Node-style callback functions; nothing exists on the stack to
+catch it! Instead, deal directly with the error or pass the error off to another
+function that can properly handle the error.
+
+Implicit exceptions
+are any runtime JavaScript errors not triggered by the throw keyword.
+
+The error event
+can be emitted from any EventEmitter in Node. If left unhandled, Node will throw the error.
+Also it's better to provide a new Error with stack trace to all consumers of your code, 
+it will help to understand a trouble sometimes.
+
+Exeption handler
+Also remember that state (this) can be affected, because your jumping in completely different
+function.
+But what is process.on('uncaughtException', _ => reload()) good for - is to restart your service 
+if and error happened.
+It’s wise to treat an uncaughtException handler as a last chance to say your goodbyes before going down.
+Write out the error, perhaps send an email or do some other notification, and then gracefully kill/reload
+the app. Log error, Stop incoming connections, and so on.
+
+Lint
+
