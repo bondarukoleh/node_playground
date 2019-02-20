@@ -3,7 +3,8 @@
         "browser": true,
         "commonjs": true,
         "es6": true,
-        "mocha": true
+        "mocha": true,
+        "node": true
     },
     "globals": {
         "someGlobalVariable": true
@@ -12,5 +13,6 @@
         "ecmaVersion": 2018
     },
     "rules": {
+        "no-undef": 1
     }
 }

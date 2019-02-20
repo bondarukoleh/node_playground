@@ -13,7 +13,7 @@ const server = net.createServer(client => {
 
   client.on('end', _ => {
     console.log(`Client with id: ${clientId} disconnected.`);
-    setTimeout(_ => server.unref(), 5000 /* Exit server when he has no connected users */)
+    setTimeout(_ => server.unref(), 5000) /* Exit server when he has no connected users */
   });
 
   client.write(`Welcome dear user, your id - ${clientId}`);

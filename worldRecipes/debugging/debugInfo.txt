@@ -26,5 +26,66 @@ It’s wise to treat an uncaughtException handler as a last chance to say your g
 Write out the error, perhaps send an email or do some other notification, and then gracefully kill/reload
 the app. Log error, Stop incoming connections, and so on.
 
-Lint
+Node debugger.
+To start a debugger - node debug fileToDebug.js
+Available commands debug>help
+You can watch variables in it, step into functions, change contexts in repl.
+Also you can set a breakpoint by debugger; statemant in your code, and stop there
+when you are in debugger mode.
 
+Node inspector.
+Node allows remote debugging by exposing a debugging port that third-party modules
+and tools can hook into (including the built-in debugger). One popular module
+is node-inspector, which ties in debugging information from Node into the Chrome
+DevTools interface.
+node --debug test.js or node --debug-brk test.js (to break in first line of script)
+http://127.0.0.1:8080/debug?port=5858
+
+Profiling
+Node can tap into V8 statistical profiler, with node --prof flag.
+Every two milliseconds, the profiler looks at the running application and records
+the function executing at that moment. The function may be a JavaScript function,
+but it also can come from C++, shared libraries, or V8 garbage collection. The profiler
+writes these “ticks” to a file named v8.log, where they’re then processed by a special
+V8 tick-processor program.
+You can see log by third-party apps, it's a painfull a little bit, but we can see what app
+makes a lot of tiks in processor.
+It doesn’t necessarily mean that the function is slow, but it does mean either a lot happens in the
+function or it’s called often. The results should serve as clues to help you understand
+what can be done to improve the performance.
+
+Memory leaks.
+Install heapdump --save-dev and Chrome DevTools.
+You can make a snapshots by heapdump and compare them in chrome devtools, it will show size delta between
+snapshots in some js parts like strings, arrays, etc. And you can delve deeper in what happening in 
+those partrs.
+
+Debugging with REPL.
+If you type node in terminal - it will run buid in repl module.
+You want to interact with a running process to inspect or change its state -
+Set up a REPL in the process and a REPL client to access.
+A NOTE ABOUT USEGLOBAL When enabled, whenever you create a new variable
+(like var a = 1), it will be put in the global context (global.a === 1). But a
+now will also be accessible in functions run in a later turn in the event loop.
+We exposed the server by setting a property on r.context. We can expose anything
+we want to the REPL in order to interact with it. It’s important to note that we also can
+override anything already existing in the context. This includes all the standard Node
+global variables like global, process, or Buffer.
+One powerful aspect of a REPL is the ability to add
+instrumentation to help us understand behavior in our application as it’s happening.
+This is especially handy for tricky problems where restarting the
+application loses our precious state and we have no idea how to duplicate the
+issue except to wait for it to happen again.
+
+Tracing.
+A tracing program is essentially a dump of system calls as they happen in a process.
+strace for Linux, dtruss - OS, ProcessMonitor - Windows.
+If you ever wondered why process.argv[0] is node and process.argv[1] is the path
+to our Node program, now you realise that that is the arguments to execute every node
+programm in OS level.
+sudo dtruss -o node myFile.js
+
+But not only tracing a file, we can trace a provide
+ps ax | grep node
+32476 ? Ssl 0:08 /usr/bin/node myLongRunningProcess.js
+sudo dtruss -p 32476
