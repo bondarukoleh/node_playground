@@ -1,0 +1,37 @@
+Deployment
+Once you’ve built and tested a Node application, you’ll want to release it. Popular
+PaaS (platform as a service) providers like Heroku and Nodejitsu make deployment
+simple, but you can also deploy to private servers.
+
+Easy to use cloud deployment: Nodejitsu, Heroku, and Windows Azure.
+Nvm - is a good node version manager.
+Also we can use apache and nginx.
+
+You can run app on your own mashine, but you need to rebind traffic from 80 port to port
+where your app is. You can do it in Linux via iptables. BUT downside of this technique is 
+that it maps traffic to any process that’s listening to that port.
+Alternative is to change node binaries to bind app to some specific port, don't get the
+advantage of this.
+
+Keeping Node processes running
+There are two main ways to keep a Node program running: service supervision or a
+Node program that manages other Node programs.
+The first method is a generic, operating system–specific technique. Runit for example
+supports service supervision, which means it detects when a process stops running and
+tries to restart it. Another daemon manager is Upstart.
+
+Node process managers work by using a small program that ensures another program
+runs continuously. This program is simple and therefore less likely to crash than
+a more complex web application. One of the most popular modules for this is forever
+(https://www.npmjs.org/package/forever), which can be used as a command-line program
+or programmatically.
+Most people use it through the command-line interface. The basic usage is
+forever start app.js, where app.js is your web application. It has lots of options
+beyond this, though: it can manage log files and even wrap your program so it
+behaves like a daemon.
+
+Deploying socket service.
+Deploying applications that use WebSockets can bring a set of unique requirements.
+It can be more difficult with PaaS providers, because they can kill requests that
+last for more than a certain number of seconds.
+

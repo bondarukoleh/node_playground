@@ -2,7 +2,6 @@ let topSum = 0;
 
 function changeTop(){
   topSum = 50;
-  let foo = bar;
 }
 
 function addToTop(){
