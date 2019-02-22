@@ -35,3 +35,75 @@ Deploying applications that use WebSockets can bring a set of unique requirement
 It can be more difficult with PaaS providers, because they can kill requests that
 last for more than a certain number of seconds.
 
+HTTP is essentially a stateless protocol, which means all interactions between a
+server and a client can be modeled with requests and responses that hold all of the
+required state. This level of encapsulation has led to the design of modern client/
+server web applications.
+The downside of this is that the underlying protocol doesn’t support long-running
+full-duplex connections. There’s a wide class of applications that are built on TCP connections
+of this type; video streaming and conferencing, real-time messaging, and
+games are prominent examples. As web browsers have evolved to support richer, more
+sophisticated applications, we’re naturally left trying to simulate these types of applications
+using HTTP.
+The WebSocket protocol was developed to support long-lived TCP-like connections.
+It works by using a standard HTTP handshake where the client establishes
+whether the server supports WebSockets. The mechanism for this is a new header
+called Upgrade. As HTTP clients and servers are typically bombarded with a variety of
+nonstandard headers, servers that don’t support Upgrade should be fine—the client
+will just have to fall back to old-fashioned HTTP polling.
+Because servers have to handle WebSocket connections so differently, it makes sense
+to effectively run two servers. In a Node program, we typically have an http.listen for
+our standard HTTP requests, and another “internal” WebSocket server.
+We saw how to use nginx with Node. The example used proxies
+to pass requests from nginx to your Node process, which meant the Node process
+could bind to a different port to 80. By using the same technique, you can make nginx
+support WebSockets.
+
+So the main idea - is to use proxy servers that will decide where to sent the client
+request, either to http or socket server.
+Also with proxy - we cat setup a smal round-robin load balancing witch is preaty cool. 
+
+Another approach that we haven’t discussed yet is to put your Node applications
+behind a lightweight Node program that acts as a proxy itself. This is actually used
+behind the scenes by PaaS providers like Nodejitsu.
+Selecting the right server architecture is just the first step to successfully deploying
+a Node application. You should also consider performance and scalability.
+
+Caching and scaling
+Browsers cache content locally, and can look at the cache to determine if a
+resource needs to be downloaded. This process is controlled by HTTP cache headers and
+conditional requests.
+The main two headers are Cache-Control and Expires. The Cache-Control
+header allows the server to specify a directive that controls how a resource is cached.
+The basic directives are as follows:
+■ public—Allow caching in the browser and any intermediate proxies between
+the browser and server.
+■ private—Only allow the browser to cache the resource.
+■ no-store—Don’t cache the resource (but some clients still cache under certain
+conditions).
+
+The Expires header tells the browser when to replace the local resource. The date
+should be in the RFC 1123 format: Fri, 03 Apr 2014 19:06 BST. The HTTP/1.1 specification
+notes that dates over a year shouldn’t be used, so don’t set dates too far into the
+future because the behavior is undefined.
+
+Conditional caching is great for large assets that may change, like images, because it’s
+much cheaper to make a GET request to find out if a resource should be downloaded
+again. This is known as a time-based conditional request. There are also content-based
+conditional requests, where a digest of the resource is used to see if a resource has changed.
+So the idea is to check is time is run out and we need to download new resource, 
+or is the file is changed - and we nned to download it again.
+Content-based conditional requests work using ETags. ETag is short for entity tag,
+and allows servers to validate resources in a cache based on their content.
+
+For example, we set the etag to some resource, and give it value of resource hash.
+If client requests resource once again, we can grap hash from request and compare it 
+with current resource state - if it's same - no need to download resource once again.
+
+Node proxy for routing and scalling
+Caching is an elegant way of improving performance because it effectively allows
+you to reduce traffic by making clients do a bit more work. Another option is to use a
+Node-based HTTP proxy to route between a cluster of processes or servers.
+You want to use a pure Node solution to host multiple applications, or scale an
+application - Use a proxy server module like Nodejitsu’s http-proxy.
+With it we can true easily setup a proxy, and simple load balancer.
