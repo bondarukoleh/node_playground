@@ -107,3 +107,65 @@ Node-based HTTP proxy to route between a cluster of processes or servers.
 You want to use a pure Node solution to host multiple applications, or scale an
 application - Use a proxy server module like Nodejitsu’s http-proxy.
 With it we can true easily setup a proxy, and simple load balancer.
+Cluster
+You want to improve your application’s response time, or increase its resiliency - 
+use cluster module.
+We’re trained to think of Node programs as single-threaded because JavaScript platforms are
+conceptually single-threaded, but behind the scenes, Node’s libraries like libuv will use
+threads to provide asynchronous APIs. That gives us the eventbased programming style without
+having to worry about the complexity of threads.
+require('os').cpus() - how many cores you've got
+
+  The cluster module provides a way of running multiple worker processes that
+share access to underlying file handles and sockets. That means you can wrap a Node
+application with a master process that works workers. Workers don’t need access to
+shared state if you’re doing things like accessing user sessions in a database; all the
+workers will have access to the database connection, so you shouldn’t need to set up
+any communication between workers.
+  If one of your workers encounters an error and the process ends, then
+you’ll want to restart it. The cool thing about this is any other active workers can still
+serve requests, so clustering will not only improve request latency but also potentially
+uptime as well.
+Communication between workers - great, but If you’re running an application on separate servers,
+how can Node processes communicate?
+  One simple answer might be HTTP — you could build an internal REST API for communication.
+You could even use WebSockets if messages need faster responses. We can use RabbitMQ - simple 
+messager to communicate between servers. There are several implementations of RabbitMQ clients
+on npm—we used amqplib. There are also competitors to RabbitMQ—zeromq is a highly focused and
+simple alternative.
+  Another option is to use a hosted publish/subscribe service. One example of this is
+Pusher (http://pusher.com/), which uses WebSockets to help scale applications. The
+advantage of this approach is that Pusher can message anything, including mobile clients.
+Rather than restricting messaging to your Node programs, you can create message
+channels that web, mobile, and even desktop clients can subscribe to.
+
+It is usefull to benchmark test of cluster. Load test it.
+There is a tool "ab" in apache. 
+
+  Also very cool stuff - Load balancing with an additional proxy server (nginx, apache) doesn’t
+have the same kind of interprocess communication options that cluster has—you can use
+process.send and cluster.workers[id].on('message', fn) to communicate between workers.
+  But proxies with dedicated load-balancing features have a wider choice of loadbalancing
+algorithms.
+
+Package optimization
+npm prune and npm shrinkwrap.
+  The npm prune command removes packages that are no longer listed in your package.json,
+but it also applies to the dependencies themselves, so it can sometimes dramatically reduce
+your application’s storage footprint. You should also consider using npm prune --production to
+remove devDependencies from production releases.
+  Shrinkwrap analyze packeges and make a map of them in generated npm-shrinkwrap.json. We can 
+add it to repository, and npm should use it to download accurate version of packages.
+Difference between package-lock.json and npm-shrinkwrap.json:
+  - using a package-lock.json to record exactly which versions of dependencies you installed,
+  but allowing people installing your package to use any version of the dependencies that is
+  compatible with the version ranges dictated by your package.json
+  - using an npm-shrinkwrap.json to guarantee that everyone who installs your package gets exactly
+  the same version of all dependencies
+shrinkwrap - is more straight.  
+
+Logging and logging services
+You want to log messages from a Node application on your own server, or on a PaaS provider.
+Either redirect logs to files and use logrotate, or use a third-party logging service.
+
+npm start 1> application.log 2> errors.log
