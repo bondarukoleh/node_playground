@@ -1,0 +1,12 @@
+npm at its core is a set of tools for installing, managing, and
+creating Node modules.
+Make each program do one thing well, means make your module doing something good but one thing.
+
+npm list - graph of dependency
+npm search fibonacci - search existing modules.
+npm docs fibonacci - will load a homepage of module in browser
+
+
+Every module has an entry point: the object/function/constructor that we get when it’s
+required elsewhere using the require keyword.
+
