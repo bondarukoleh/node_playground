@@ -1,0 +1,29 @@
+{
+  "name": "fibonaccimodule",
+  "version": "0.1.0",
+  "description": "Calculate a fibonacci number in a few ways.",
+  "main": "index.js",
+  "bin": {
+    "fibonaccimodule": "index.js"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "../../node_modules/mocha/bin/mocha ./specs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bondarukoleh/node_playground/writingModules/fibonacciModule.git"
+  },
+  "keywords": [
+    "fibonacci",
+    "test"
+  ],
+  "author": "Oleh bondaruk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bondarukoleh/node_playground/writingModules/fibonacciModule.git/issues"
+  },
+  "homepage": "https://github.com/bondarukoleh/node_playground/writingModules/fibonacciModule.git#readme"
+}
