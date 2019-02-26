@@ -72,8 +72,8 @@ function findInDirAsync(file, folder, cb) {
 
 /* Usage */
 /*
-console.log('Sync search:', findInDirSync('text.txt', path.resolve(__dirname, '../../nodeAbilities')))
-findInDirAsync('2.txt', path.resolve(__dirname, '../../nodeAbilities/data'), (err, data) => {
+console.log('Sync search:', findInDirSync('text.txt', path.resolve(__dirname, '../../nodeCore')))
+findInDirAsync('2.txt', path.resolve(__dirname, '../../nodeCore/data'), (err, data) => {
   if(err) console.log(err);
   if(data) console.log('Async search:', data);
 })

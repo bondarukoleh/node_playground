@@ -43,7 +43,7 @@ class Server {
   }
 }
 
-/*Usage. In one terminal  node .\nodeAbilities\net\dgram.js, in other node .\nodeAbilities\net\dgram.js startClient */
+/*Usage. In one terminal  node .\nodeCore\net\dgram.js, in other node .\nodeCore\net\dgram.js startClient */
 if (process.argv[2] === 'startClient') {
   new Client(defautPort, 'localhost').startSendingMessage()
 } else {

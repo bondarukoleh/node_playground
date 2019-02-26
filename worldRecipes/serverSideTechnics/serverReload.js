@@ -2,7 +2,7 @@ const fs = require('fs');
 const {exec} = require('child_process');
 const path = require('path');
 
-const serverPath = path.resolve(__dirname, '../../nodeAbilities/stream/staticServer.js');
+const serverPath = path.resolve(__dirname, '../../nodeCore/stream/staticServer.js');
 
 function watch(){
   const child = exec(`node ${serverPath}`);

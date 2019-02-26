@@ -6,7 +6,8 @@ npm list - graph of dependency
 npm search fibonacci - search existing modules.
 npm docs fibonacci - will load a homepage of module in browser
 
-
 Every module has an entry point: the object/function/constructor that we get when it’s
 required elsewhere using the require keyword.
 
+A package.json is the central file for managing core data about your module, common
+scripts, and dependencies.
