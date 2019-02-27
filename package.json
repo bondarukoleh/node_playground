@@ -25,7 +25,6 @@
     "serve-static": "^1.13.2"
   },
   "devDependencies": {
-    "benchmark": "^2.1.4",
     "eslint": "^5.14.0",
     "heapdump": "^0.3.12"
   }

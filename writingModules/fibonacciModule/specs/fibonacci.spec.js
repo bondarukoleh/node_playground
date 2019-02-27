@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const assert = require('assert')
-const {iterFib, tailFib, recurciveFib} = require('../index.js')
+const {tailFib, recurciveFib} = require('../index.js')
 const Banchmark = require('benchmark');
 
 describe('Test Fibonacci functions', () => {
@@ -25,8 +25,8 @@ describe('Test Fibonacci functions', () => {
 
   it(`Should benchmark fibonacci tail module`, () => {
     const suite = new Banchmark.Suite;
-    suite.add('pass a 12 in fibonacci tail module', () => tailFib(12))
-      .add('pass a 13 in fibonacci tail module', () => tailFib(12))
+    suite.add('pass a 12 in fibonacci tail module', () => tailFib(20))
+      .add('pass a 13 in fibonacci tail module', () => tailFib(30))
       .on('cycle', function (event) {
         console.log(String(event.target));
       })
@@ -38,14 +38,14 @@ describe('Test Fibonacci functions', () => {
       .run({ 'async': true });
   })
 
-  it(`Should benchmark fibonacci iter module`, () => {
+  it(`Should benchmark fibonacci recursive module`, () => {
     const suite = new Banchmark.Suite;
     suite
       .add('pass a 12 in iter fibonacci module', function () {
-        iterFib(12)
+        recurciveFib(10)
       })
       .add('pass a 13 in iter fibonacci module', function () {
-        iterFib(12)
+        recurciveFib(20)
       })
       // add listeners
       .on('cycle', function (event) {

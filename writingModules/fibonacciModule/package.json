@@ -4,7 +4,7 @@
   "description": "Calculate a fibonacci number in a few ways.",
   "main": "index.js",
   "bin": {
-    "fibonaccimodule": "index.js"
+    "fibonaccimodule": "./bin/fibonaccimodule.js"
   },
   "directories": {
     "lib": "lib"
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bondarukoleh/node_playground/writingModules/fibonacciModule.git"
+    "url": "https://github.com/bondarukoleh/node_playground.git"
   },
   "keywords": [
     "fibonacci",
@@ -23,7 +23,10 @@
   "author": "Oleh bondaruk",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bondarukoleh/node_playground/writingModules/fibonacciModule.git/issues"
+    "url": "https://github.com/bondarukoleh/node_playground.git/issues"
   },
-  "homepage": "https://github.com/bondarukoleh/node_playground/writingModules/fibonacciModule.git#readme"
+  "homepage": "https://github.com/bondarukoleh/node_playground.git#readme",
+  "devDependencies": {
+    "benchmark": "2.1.4"
+  }
 }

@@ -10,4 +10,48 @@ Every module has an entry point: the object/function/constructor that we get whe
 required elsewhere using the require keyword.
 
 A package.json is the central file for managing core data about your module, common
-scripts, and dependencies.
+scripts, and dependencies. A package.json file tells npm what to
+fetch and at what version to fetch our dependencies when using npm install.
+The types of dependencies are as listed here:
+■ dependencies—Required for your module to function properly (fails to install - error)
+■ devDependencies—Required solely for development, like testing, benchmarking,
+and server reloading tools
+■ optionalDependencies—Not required for your module to work, but may
+enhance the functionality in some way (if fails to instll - not big deal)
+■ peerDependencies—Requires another module to be installed in order to run
+properly
+
+peer depencies:
+I expect this module to exist in your project and to be at this version in order for
+my module to work. The most common type of this dependency is a plugin.
+Some popular modules that have plugins are
+■ Grunt
+■ Connect
+■ winston
+■ Mongoose
+
+Keeping dependencies up to date
+npm outdated (--depth 0)
+But be aware that it will work only with dependency part, not devDependency or optional, peer.
+
+Updating some dependency.
+npm update someModule --save-dev or npm install someModule@latest --save-dev
+
+Semantic versioning
+Given a version number MAJOR.MINOR.PATCH, increment the:
+MAJOR version when you make incompatible API changes,
+MINOR version when you add functionality in a backwards-compatible manner, and
+PATCH version when you make backwards-compatible bug fixes.
+
+So the main idea was next:
+"module": "0.2.1" - only this version should be installed.
+"module": "^0.2.1" - any Patch can be installed.
+"module": "^1.2.1" - any Minor and Patch can be installed.
+"module": "~1.2.1" - any Patch can be installed. (Diff - having the Major version)
+"module": "1.0.0 - 1.2.0" - range of versions.
+
+Install exacly version
+npm install someModule --save-dev --save-exact
+
+Adding a cli executable script of your module, to users have ability to run it globaly
+we can emulate global instalation of module using npm link from module root (under sudo)
