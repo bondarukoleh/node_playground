@@ -51,6 +51,9 @@ function decorate(classItem, functions) {
 }
 decorate(ShouldBeDecorated, ['asyncCaller', 'syncCaller'])
 
-const cl = new ShouldBeDecorated()
+// const cl = new ShouldBeDecorated()
 
-console.log(cl.syncCaller('dsada'))
+// console.log(cl.syncCaller('dsada'))
+const o = ShouldBeDecorated.prototype.asyncCaller
+
+console.log(o.constructor.name);
