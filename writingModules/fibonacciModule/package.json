@@ -26,6 +26,9 @@
     "url": "https://github.com/bondarukoleh/node_playground.git/issues"
   },
   "homepage": "https://github.com/bondarukoleh/node_playground.git#readme",
+  "engines": {
+    "node": ">=8.0.0 <11.0.0"
+  },
   "devDependencies": {
     "benchmark": "2.1.4"
   }

@@ -1,9 +1,9 @@
 const asyncStep = async (name, stepFunction, args) => {
   try {
-    result = await stepFunction(...args)
+    let result = await stepFunction(...args)
     console.log('allure step end success')
     console.log(`Log success function "${name}" with arguments: ${args}.`)
-    return result
+    return result;
   } catch(error) {
     console.log('allure step end failed')
     console.log(`Log failed function "${name}" with arguments: ${args}.`)
@@ -13,10 +13,10 @@ const asyncStep = async (name, stepFunction, args) => {
 
 const syncStep = (name, stepFunction, args) => {
   try {
-    result = stepFunction(...args)
+    let result = stepFunction(...args)
     console.log('allure step end success')
     console.log(`Log success function ${name} and arguments: ${args}.`)
-    return result
+    return result;
   } catch(error) {
     console.log('allure step end failed')
     console.log(`Log failed function ${name} and arguments: ${args}.`)
