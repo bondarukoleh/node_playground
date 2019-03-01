@@ -68,5 +68,38 @@ you can run your app.
 We can check how our module behavior thru several node versions.
 A variety of popular options are available:
 ■ Install multiple versions of Node on your machine
-■ Use Travis CI’s multi-Node version support (https://travis-ci.org/)
+■ Use Travis CI’s multi-Node version support
 ■ Use a third-party multiversion test module that works for your environment
+
+PUBLISH
+We can add a npm user via npm adduser, from console.
+
+Check before publish:
+Semantic versioning, and release notes, tests.
+
+npm publish
+
+If we miss something
+// make fixes
+$ npm version patch
+v0.1.1
+npm publish
+
+If you want to exclude some version
+npm deprecate myModule@"<= 0.2.5"
+"major security issue was fixed in v0.2.6"
+
+Private module
+package.json file - "private": true
+This tells npm to refuse to publish your package with npm publish.
+
+Or you can setup a share private repository in git
+"dependencies": {
+"myModule" : "git+ssh://git@github.com:mycompany/b.git#develop",
+"a": "git+ssh://git@github.com:mycompany/a.git#0.1.0", Specifying by tag
+"b": "git+ssh://git@github.com:mycompany/b.git#develop", Specifying by branch name
+"c": "git+ssh://git@github.com:mycompany/c.git#dacc525c" Specifying by commit
+}
+
+Share somewhere on server zip of your library, and give a url to. Then in preinstall somewhere
+npm install http://internal-server.com/myModule.tar.gz --save
