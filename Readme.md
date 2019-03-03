@@ -11,5 +11,5 @@
 - deploying
 
 So that's a lot of fun here guys.  
-Some of code examples made with time pressue, and lazyness, so don't judge to hard guys.  
+Some of code examples made with time pressue, and lazyness, so don't judge to hard.  
 Repository created for __learning__ purpose.
