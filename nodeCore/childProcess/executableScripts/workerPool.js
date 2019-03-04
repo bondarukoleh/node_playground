@@ -1,5 +1,5 @@
-var cp = require('child_process');
-var cpus = require('os').cpus().length;
+const cp = require('child_process');
+const cpus = require('os').cpus().length;
 
 function doSomeWork(worker) {
   const awaiting = [];
