@@ -32,6 +32,8 @@ Stub - A method stub is used to replace functionality for the duration of tests.
 methods used to communicate with an I/O source like a disk or remote API can be
 stubbed to return predefined data.
 
+Spy - is wrapper, proxy on functional under test, where you can grab in and out data and test them. 
+
 Continuous integration server - A CI server runs automated tests whenever a project is updated through a version
 control server.
 
