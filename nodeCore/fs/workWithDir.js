@@ -78,4 +78,21 @@ findInDirAsync('2.txt', path.resolve(__dirname, '../../nodeCore/data'), (err, da
   if(data) console.log('Async search:', data);
 })
 */
+
+function* readDirGen(dirToRead){
+  const files = fs.readdirSync(dirToRead);
+  for(let i = 0; i < files.length; i++ ){
+    if(fs.statSync(path.resolve(dirToRead, files[i])).isDirectory()){
+      yield* readDirGen(path.resolve(dirToRead, files[i]))
+    }
+    yield files[i]
+  }
+}
+
+const readDirWithGenerator = () => {
+  for(const file of readDirGen(path.resolve(__dirname, '../'))){
+    console.log(file);
+  }
+}
+readDirWithGenerator()
 module.exports = { removeFolderSync, findInDirSync, findInDirAsync };
