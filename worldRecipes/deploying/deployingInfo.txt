@@ -61,7 +61,7 @@ support WebSockets.
 
 So the main idea - is to use proxy servers that will decide where to sent the client
 request, either to http or socket server.
-Also with proxy - we cat setup a smal round-robin load balancing witch is preaty cool. 
+Also with proxy - we cat setup a small round-robin load balancing which is pretty cool. 
 
 Another approach that we haven’t discussed yet is to put your Node applications
 behind a lightweight Node program that acts as a proxy itself. This is actually used

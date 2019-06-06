@@ -3,7 +3,7 @@ if(badCondition){throw new Error('message')};
 
 THROW:
 - should be used only in synchronous functions, or before async action occeured in async function,
-witch make it still only in sync code;
+wich make it still only in sync code;
 - always throw as Error or it's child;
 - Don’t throw inside Node-style callback functions; nothing exists on the stack to
 catch it! Instead, deal directly with the error or pass the error off to another

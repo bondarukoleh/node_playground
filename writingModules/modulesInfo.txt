@@ -21,7 +21,7 @@ enhance the functionality in some way (if fails to instll - not big deal)
 ■ peerDependencies—Requires another module to be installed in order to run
 properly
 
-peer depencies:
+peer decencies:
 I expect this module to exist in your project and to be at this version in order for
 my module to work. The most common type of this dependency is a plugin.
 Some popular modules that have plugins are
@@ -54,7 +54,7 @@ Install exacly version
 npm install someModule --save-dev --save-exact
 
 Adding a cli executable script of your module, to users have ability to run it globaly
-we can emulate global instalation of module using npm link from module root (under sudo)
+we can emulate global installation of module using npm link from module root (under sudo)
 
 Also we can link some module to another to test it.
 i.e. from myNewModule after I can use:
@@ -62,17 +62,17 @@ const innerModule = require('maModuleName') - globally, without path.
 
 Multiple Node versions
 
-Using engines section in package.json - you can set on witch versions of node 
+Using engines section in package.json - you can set on which versions of node 
 you can run your app.
 
 We can check how our module behavior thru several node versions.
 A variety of popular options are available:
 ■ Install multiple versions of Node on your machine
 ■ Use Travis CI’s multi-Node version support
-■ Use a third-party multiversion test module that works for your environment
+■ Use a third-party multi-version test module that works for your environment
 
 PUBLISH
-We can add a npm user via npm adduser, from console.
+We can add a npm user via npm add user, from console.
 
 Check before publish:
 Semantic versioning, and release notes, tests.
