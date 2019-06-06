@@ -2,7 +2,11 @@
 --timeout 5000
 #-R is for --reporter. Can also be landing, nyan, progress
 -R spec
-#-r is for --require. run some file
+#-r is for --require. run some file Modules required in this manner are expected
+#to do work synchronously; Mocha won't wait for async tasks in a required module to finish.
 -r ./helpers/somePretestHelper.js
 #-g is for --grep. Run some spec that machs some word in describe or it
 #-g super
+#--file - run file before all tests run. Useful if you want to declare, for example,
+# hooks to be run before every test across all other test files.
+--file ./helpers/runBeforeSpecs.js
