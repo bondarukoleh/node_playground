@@ -1,4 +1,5 @@
---recursive
+#Set the test directory here, but could do it in package.json "test": "mocha ./specs/**/*.js"
+--recursive ./specs/**/*.js 
 --timeout 5000
 #-R is for --reporter. Can also be landing, nyan, progress
 -R spec
@@ -6,7 +7,7 @@
 #to do work synchronously; Mocha won't wait for async tasks in a required module to finish.
 -r ./helpers/somePretestHelper.js
 #-g is for --grep. Run some spec that machs some word in describe or it
-#-g super
+#-g Second
 #--file - run file before all tests run. Useful if you want to declare, for example,
 # hooks to be run before every test across all other test files.
 --file ./helpers/runBeforeSpecs.js
