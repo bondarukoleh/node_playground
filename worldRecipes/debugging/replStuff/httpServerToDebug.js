@@ -12,7 +12,7 @@ server.listen(3000);
 console.log('server listening on 3000');
 
 net.createServer(function (socket) {
-  var r = replModule.start({
+  const r = replModule.start({
     input: socket,
     output: socket,
     terminal: true,

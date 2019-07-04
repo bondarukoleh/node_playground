@@ -3,7 +3,7 @@ const os = require('os');
 const https = require('https');
 const path = require('path')
 
-var options = {
+const options = {
   key: fs.readFileSync(path.resolve(__dirname, '../../../../../.ssh/client.pem')),//your private key here
   cert: fs.readFileSync(path.resolve(__dirname, '../../../../../.ssh/client-cert.pem')),//your client sertificate here
   ca: [fs.readFileSync(path.resolve(__dirname, '../../../../../.ssh/server-cert.pem'))],//your server sertificate here

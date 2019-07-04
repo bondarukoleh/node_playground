@@ -30,15 +30,15 @@ stream.Duplex _read(size), _write(chunk, encoding, callback) - A readable and wr
 stream.Transform _flush(size), _transform(chunk,encoding, callback) - A duplex stream that changes
 data in some way, with no limitation on matching input
 
-Opening a read stream to an existing file - var rstream = fs.createReadStream('existingFile');
-Opening a write stream for storing data in a file - var wstream = fs.createWriteStream('fileToWrite');
+Opening a read stream to an existing file - const rstream = fs.createReadStream('existingFile');
+Opening a write stream for storing data in a file - const wstream = fs.createWriteStream('fileToWrite');
 Copy File
-var rstream = fs.createReadStream('existingFile');
-var wstream = fs.createWriteStream('myFileToWriteTo');
+const rstream = fs.createReadStream('existingFile');
+const wstream = fs.createWriteStream('myFileToWriteTo');
 rstream.pipe(wstream);
 
-var server = http.createServer(function (req, res) {
-  var rstream = fs.createReadStream('existFile'); //тоесть передать ответ маленькими пачками
+const server = http.createServer(function (req, res) {
+  const rstream = fs.createReadStream('existFile'); //тоесть передать ответ маленькими пачками
   rstream.pipe(res);
 }).listen(8000, '127.0.0.1');
 

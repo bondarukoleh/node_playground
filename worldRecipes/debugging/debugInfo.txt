@@ -65,7 +65,7 @@ If you type node in terminal - it will run buid in repl module.
 You want to interact with a running process to inspect or change its state -
 Set up a REPL in the process and a REPL client to access.
 A NOTE ABOUT USEGLOBAL When enabled, whenever you create a new variable
-(like var a = 1), it will be put in the global context (global.a === 1). But a
+(like let a = 1), it will be put in the global context (global.a === 1). But a
 now will also be accessible in functions run in a later turn in the event loop.
 We exposed the server by setting a property on r.context. We can expose anything
 we want to the REPL in order to interact with it. It’s important to note that we also can
