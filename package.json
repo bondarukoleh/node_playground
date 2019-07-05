@@ -22,7 +22,11 @@
     "nodemon": "^1.18.9",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
-    "serve-static": "^1.13.2"
+    "serve-static": "^1.13.2",
+    "@koa/cors": "^3.0.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa2": "^2.0.0-alpha.7"
   },
   "devDependencies": {
     "eslint": "^5.14.0",
