@@ -78,3 +78,8 @@ app.listen(port, () => {
   console.log(`Subscription events mock service running on ${port} port.`);
   createEventsStorage()
 });
+
+process.on('uncaughtException', (err) => {
+  console.log('Got uncaught.');
+  app.onerror(err)
+})
