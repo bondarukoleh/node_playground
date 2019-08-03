@@ -7,8 +7,9 @@ function removeFolderSync(dirToRemove) {
       const currentFile = path.join(dirToRemove, file)
       if (fs.statSync(currentFile).isDirectory()) {
         removeFolderSync(currentFile);
+      } else {
+        fs.unlinkSync(currentFile);
       }
-      fs.unlinkSync(currentFile);
     })
     fs.rmdirSync(dirToRemove);
   }
