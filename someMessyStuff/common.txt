@@ -1,16 +1,16 @@
-Word abount npm run.
+Word about npm run.
 So when you've set 
 "scripts": {
   "lint": "eslint ."
 }
-and run >npm run-script (run) lint.
+and run >npm run-script (same as "run") lint.
 It means that node will set up all needed system variables from package.json before command will run. And system
   will know that we have eslint package in node_modules.
 
 It's alike you're run >./node_modules/.bin/eslint . -> means if there an alias to executable file in package - use it.
 >./node_modules/.bin/eslint . -> same as run >./node_modules/eslint/bin/eslint.js . In bin it's aliases to packages.
 
-Why ./node_modules/eslint/bin/eslint.js works -> #!/usr/bin/env node, shebang, that's why, it's an executable by node 
+Why ./node_modules/eslint/bin/eslint.js works? -> #!/usr/bin/env node, shebang, that's why, it's an executable by node
 file.
 
 It's the same as we'd run with node explicit. >node ./node_modules/eslint/bin/eslint.js .

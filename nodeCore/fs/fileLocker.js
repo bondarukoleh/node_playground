@@ -39,7 +39,7 @@ setTimeout(() => {
   process.on('exit', () => {
     if(hasLock) {
       removeFolderSync(lockDirPath)
-      console.log('Forced removed lock synchroniously');
+      console.log('Forced removed lock synchronously');
     }
   })
 }, 5000)

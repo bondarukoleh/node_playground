@@ -15,5 +15,5 @@ const outLogFileDescriptor = fs.openSync(pathToOutLog, 'a');
 const child = cp.spawn(`cat`, [`${pathToFile}`],
  {detached: true, stdio: ['ignore', outLogFileDescriptor, errLogFileDescriptor]});
 
-/* Now we'll exit parent process, even if child is still working */
-child.unref(); //Remove reference of child in the parent process
+/* Now we can exit parent process, even if child is still working */
+child.unref(); // Remove reference of child in the parent process

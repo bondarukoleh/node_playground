@@ -6,4 +6,4 @@ child.on('error', console.error);
 child.stdout.pipe(process.stdout); // child.stdout is readable here because it's stream that goes from child process.
 // and it's hooked to node's writable process.stdout.
 child.stderr.pipe(process.stderr);
-//child.stdin - is oposite - writable, because it's a connection to child process.
+//child.stdin - is opposite - writable, because it's a connection to child process.

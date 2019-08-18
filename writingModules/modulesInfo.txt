@@ -50,10 +50,10 @@ So the main idea was next:
 "module": "~1.2.1" - any Patch can be installed. (Diff - having the Major version)
 "module": "1.0.0 - 1.2.0" - range of versions.
 
-Install exacly version
+Install exactly version
 npm install someModule --save-dev --save-exact
 
-Adding a cli executable script of your module, to users have ability to run it globaly
+Adding a cli executable script of your module, to users have ability to run it globally
 we can emulate global installation of module using npm link from module root (under sudo)
 
 Also we can link some module to another to test it.

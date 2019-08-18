@@ -60,7 +60,7 @@ Next, the developer writes the code necessary to pass the test case and then tes
 to ensure compliance. Where BDD differs from TDD is how the test case is specified.
 BDD tests cases exist in a way that specifies the desired behavior.
 The clear language of BDD test cases makes it simple for all stakeholders in a development project
-to understand. So it's more for bussiness.
+to understand. So it's more for business.
 It's where User story comes into play.
 story: description.
 As a user – “who”: primary stakeholder of a user story (As a Spotify subscriber)

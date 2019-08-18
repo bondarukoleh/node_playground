@@ -28,7 +28,7 @@ also the Subject maintains a record of the Observers.
 Whereas, in Publisher/Subscriber, publishers and subscribers don’t need to know each other.
 They simply communicate with the help of message queues or broker or event channel
 Publisher publish event to it, and subscriber listens for that event on channel, 
-so there no direct connection between pub and sub - wich is usefull in some cases.
+so there no direct connection between pub and sub - which is useful in some cases.
 
 2. In Publisher/Subscriber pattern, components are loosely coupled as opposed to Observer pattern.
 

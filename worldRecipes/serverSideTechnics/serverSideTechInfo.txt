@@ -11,9 +11,9 @@ For example, POST will create a resource, and GET means fetch a resource.
 
 Curl
 curl -H "Content-Type: application/json" -X POST -d '{ "page": { "title": "Home" } }' http://localhost:3000/pages
-First we specify the Content-Type using the -H option B. Next, the request is set to
-use POST, and the request body is included as a JSON string C. The URL is /pages
-because we’re creating a resource D.
+First we specify the Content-Type using the -H option. Next, the request is set to
+use POST, and the request body is included as a JSON string. The URL is /pages
+because we’re creating a resource.
 Curl is a useful tool for exploring APIs, once you understand the basic options. The
 ones to remember are -H for setting headers, -X for setting the HTTP method, and -d
 for the request body.

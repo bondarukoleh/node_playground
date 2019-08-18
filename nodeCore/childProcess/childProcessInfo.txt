@@ -14,7 +14,7 @@ a streaming interface for I/O and events for when the process exits.
 ■ exec—Execute one or more commands inside a shell and callback with the
 buffered output after the process exits.
 ■ fork—Execute a Node module as a separate process, given a set of arguments,
-provide a streaming and evented interface like spawn, and also set up an interprocess
+provide a streaming and event-emitter interface like spawn, and also set up an interprocess
 communication (IPC) channel between the parent and child process.
 
 Windows/UNIX has a PATH environment variable. PATH contains a list of directories where executable programs
@@ -23,8 +23,14 @@ needing an absolute or relative path to the application.
 
 
 EXECFILE
+If you need to execute a file without using a shell, the execFile function is what you need.
+It behaves exactly like the exec function, but does not use a shell, which makes it a bit more efficient.
+
+On Windows, some files cannot be executed on their own, like .bat or .cmd files.
+Those files cannot be executed with execFile and you need "exec" or "spawn" with shell set to true to execute them.
+
 The output from our external app is buffered internally. When our external app exits, our callback is called
-with the output.execvp behind the scenes will search for applications using PATH when no
+with the output. exec behind the scenes will search for applications using PATH when no
 absolute or relative location is provided. We can see this in our earlier example, since
 directories to common system applications like echo usually exist in PATH already.
 If the directory containing the application isn’t in PATH, you’ll need to provide the
@@ -37,14 +43,24 @@ ENOENT - app doesn't exist;
 EACCES or EPERM error - exists but node cannot access it;
 
 SPAWN
-Same as execFile - but returns a stream. Spawn method returns a ChildProcess object containing stdin,
+return Event Emitter API
+The spawn function launches a command in a new process and we can use it to pass that command any arguments.
+We can communicate with child directly from our stdin, to pass some data into child process.
+const child = spawn('some_process');
+process.stdin.pipe(child.stdin)
+child.stdout.on('data', (data) => console.log(`child stdout:\n${data}`));
+
+Same as execFile - but returns a stream that generates ChildProcess object, a ChildProcess object contains stdin,
 stdout, and stderr stream objects.
 
 EXEC
-This method will spawn a subshell and execute the command in that shell and buffer generated data. 
+This method will spawn a subshell and execute the command in that shell and buffer generated data.
+It buffers the command’s generated output and passes the whole output value to a callback function
+(instead of using streams, which is what spawn does).
 
-If you need to execute commands in a shell, you can use exec. The exec method runs
-the commands with /bin/sh or cmd.exe (on Windows). Running commands in a shell
+If you need to execute some full listed, with arguments as one string shell commands,
+and if the size of the data expected from the command is small - you can use exec.
+The exec method runs the commands with /bin/sh or cmd.exe (on Windows). Running commands in a shell
 means you have access to all the functionality provided by your particular shell (like
 pipes, redirects, and backgrounding).
 
@@ -75,7 +91,7 @@ Child processes are said to be attached to the parent process. But the spawn
 method includes the ability to detach a child process and promote it to be a process
 group leader. In this scenario, if the parent is terminated, the child process will continue
 until finished.
-This scenario is useful when you want Node to set up the execution of a longrunning
+This scenario is useful when you want Node to set up the execution of a long running
 external process and you don’t need Node to babysit it after it starts.
 This is the detached option, configurable as part of a third options parameter to
 spawn:
@@ -109,14 +125,23 @@ child process and won’t exit until the child process has finished and the refe
 You can use the child.unref() method to tell Node not to include this child process
 reference in its count.
 
-To make a complitely separate child, detach a process requires three things:
+To make a completely separate child, detach a process requires three things:
 ■ The detached option must be set to true so the child becomes its own process leader.
 ■ The stdio option must be configured so the parent and child are disconnected.
 ■ The reference to the child must be disconnected in the parent using child.unref().
 
 FORK
+The fork function is a variation of the spawn function for spawning node processes.
+The biggest difference between spawn and fork is that a communication channel is established to the child process
+when using fork, so we can use the send function on the forked process along with the global process object
+itself to exchange messages between the parent and forked processes. We do this through the EventEmitter
+module interface.
+
+We can use process.send() -> to speak to forked process directly. And vise versa - we can send messages from child
+to parent
+
 To made a big, computation heavily work (like webworker in browser), in separate process.
-Running these types of tasks in a forked process allows the main application to stay responsive.
+Running these types of tasks in a forked process allows the main application (a server for example) to stay responsive.
 Another use of forking is for sharing file descriptors,
 where a child can accept an incoming connection received by the parent process.
 
