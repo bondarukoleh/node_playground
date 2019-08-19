@@ -1,9 +1,9 @@
 External app:
-(App type)    Node -> Streaming -> Use a subshell? -> No -> fork 
+(App type)    Node -> Streaming (Event Emitter API) -> Use a subshell (creates inner shell)? -> No -> fork
               Non-Node:
-(Interface type)        Streaming -> Use a subshell? -> No -> spawn
-                        Buffered (callback) -> Use a subshell? -> No -> execFile
-                                                                -> Yes -> exec
+(Interface type)        Streaming (Event Emitter API) -> Use a subshell (creates inner shell)? -> No -> spawn
+                        Buffered (callback) -> Use a subshell (creates inner shell)? -> No -> execFile
+                                                                                     -> Yes -> exec
   The child_process module provides four different methods for executing external
 applications. All methods are asynchronous. The right method will depend on
 what you need, as shown in figure 8.1.
@@ -131,6 +131,7 @@ To make a completely separate child, detach a process requires three things:
 ■ The reference to the child must be disconnected in the parent using child.unref().
 
 FORK
+return Event Emitter API
 The fork function is a variation of the spawn function for spawning node processes.
 The biggest difference between spawn and fork is that a communication channel is established to the child process
 when using fork, so we can use the send function on the forked process along with the global process object
