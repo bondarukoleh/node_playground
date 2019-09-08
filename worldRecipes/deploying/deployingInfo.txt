@@ -169,3 +169,10 @@ You want to log messages from a Node application on your own server, or on a Paa
 Either redirect logs to files and use logrotate, or use a third-party logging service.
 
 npm start 1> application.log 2> errors.log
+
+### Jenkins notes
+* Jenkins pwd in job scripts - is in jenkins/workspace/your_job_name
+* On Linux - to run some programs jenkins needs to have sudo rights. To provide it:
+$> sudo gedit /etc/sudoers
+Add a row in file: jenkins ALL=(ALL) NOPASSWD: ALL
+but that's not a great idea.
