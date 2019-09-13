@@ -4,7 +4,8 @@ PaaS (platform as a service) providers like Heroku and Nodejitsu make deployment
 simple, but you can also deploy to private servers.
 
 Easy to use cloud deployment: Nodejitsu, Heroku, and Windows Azure.
-Nvm - is a good node version manager.
+Nvm - is a good node version manager easy to update node on UNIX machines.
+npm-windows-upgrade tool should be ok to update node on Windows.
 Also we can use apache and nginx.
 
 You can run app on your own mashine, but you need to rebind traffic from 80 port to port
