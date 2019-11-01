@@ -33,7 +33,7 @@ The module.exports property can be assigned a new value (such as a function or o
 When a file is run directly from Node.js, require.main is set to its module.
 So if "$>node foo.js" - require.main === module of foo.js. If "require('foo.js')" require.main !== module of foo.js.
 To get the exact filename that will be loaded when require() is called, use the require.resolve() function.
-const mod = require.resolve('./module1'); path === _your_path/index.js
+const moduleFilePath = require.resolve('./module1'); moduleFilePath === your_path/module1_path/index.js
 
 Modules are cached after the first time they are loaded. This means that every call to require('foo') will get
 exactly the same object returned, if it would resolve to the same file.
@@ -66,15 +66,16 @@ IF THERE NO package.json file in the above example, then require('./some-library
 LOADING FROM NODE_MODULES FOLDERS
 If the module identifier passed to require() is not a core module, and does not begin with '/', '../', or './',
 then Node.js starts at the parent directory of the current module, and adds /node_modules.
-If it is not found there, then it moves to the parent directory, and so on, until the root of the file system is reached.
+If it is not found there, then it moves to the parent directory, and so on,
+until the root project directory with package.json is reached.
 
-For example, if the file at '/home/ry/projects/foo.js' called require('bar.js'),
+For example, if the file at 'some_path/my_module/ry/projects/foo.js' called require('bar.js'),
 then Node.js would look in the following locations, in this order:
 
-/home/ry/projects/node_modules/bar.js
-/home/ry/node_modules/bar.js
-/home/node_modules/bar.js
-/node_modules/bar.js
+some_path/my_module/ry/projects/node_modules/bar.js
+some_path/my_module/ry/node_modules/bar.js
+some_path/my_module/node_modules/bar.js
+some_path/node_modules/bar.js
 
 LOADING FROM THE GLOBAL FOLDERS
 Searching depend on $NODE_PATH env variable

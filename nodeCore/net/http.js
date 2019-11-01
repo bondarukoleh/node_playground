@@ -47,36 +47,36 @@ server.on('connection', (socket) => {
 });
 server.listen(port);
 
-setTimeout(() => {
-  http.get('http://localhost:3000/special', (response) => {
-    const { statusCode } = response;
-    console.log(statusCode);
-    response.on('data', (data) => {
-      console.log('Have response: %s', data);
-    })
-    if (statusCode === 500) {
-      console.log('SERVER ERROR:', response.headers);
-    }
-    response.on('error', (err) => {
-      throw new Error('WENT WRONG:', err)
-    })
-  })
-}, 1000)
-
-setTimeout(() => {
-  http.get('http://localhost:3000/error', (response) => {
-    const { statusCode } = response;
-    response.on('data', (data) => {
-      console.log('Have response: %s', data);
-    })
-    if (statusCode === 500) {
-      console.log('SERVER ERROR:', response.headers);
-    }
-    response.on('error', (err) => {
-      throw new Error('WENT WRRONG:', err)
-    })
-  })
-}, 4000)
+// setTimeout(() => {
+//   http.get('http://localhost:3000/special', (response) => {
+//     const { statusCode } = response;
+//     console.log(statusCode);
+//     response.on('data', (data) => {
+//       console.log('Have response: %s', data);
+//     })
+//     if (statusCode === 500) {
+//       console.log('SERVER ERROR:', response.headers);
+//     }
+//     response.on('error', (err) => {
+//       throw new Error('WENT WRONG:', err)
+//     })
+//   })
+// }, 1000)
+//
+// setTimeout(() => {
+//   http.get('http://localhost:3000/error', (response) => {
+//     const { statusCode } = response;
+//     response.on('data', (data) => {
+//       console.log('Have response: %s', data);
+//     })
+//     if (statusCode === 500) {
+//       console.log('SERVER ERROR:', response.headers);
+//     }
+//     response.on('error', (err) => {
+//       throw new Error('WENT WRRONG:', err)
+//     })
+//   })
+// }, 4000)
 
 
 const orderUpdatedBody = {
@@ -99,21 +99,21 @@ const options = {
   }
 };
 
-const postUpdate = () => {
-  const req = http.request(options, (res) => {
-    const {statusCode} = res;
-    console.log(`STATUS OF RESPONSE ${statusCode}`);
-    res.on('data', (data) => {
-      console.log('GOT DATA FROM SERVER');
-      console.log(data.toString());
-    });
-  });
-  req.write(JSON.stringify(orderUpdatedBody));
-  req.end();
-  req.on('error', function (e) {
-    console.log('ERROR DURING REQUEST');
-    console.error(e);
-  });
-};
+// const postUpdate = () => {
+//   const req = http.request(options, (res) => {
+//     const {statusCode} = res;
+//     console.log(`STATUS OF RESPONSE ${statusCode}`);
+//     res.on('data', (data) => {
+//       console.log('GOT DATA FROM SERVER');
+//       console.log(data.toString());
+//     });
+//   });
+//   req.write(JSON.stringify(orderUpdatedBody));
+//   req.end();
+//   req.on('error', function (e) {
+//     console.log('ERROR DURING REQUEST');
+//     console.error(e);
+//   });
+// };
 
 // setTimeout(postUpdate, 2000);
