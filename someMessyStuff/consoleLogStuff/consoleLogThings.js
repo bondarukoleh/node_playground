@@ -10,12 +10,12 @@ and 2 is standard error.  Windows - same */
 function checkSomeStuff() {
   console.error('This is Error Message, goes to stderr');
   console.log('Simple message');
-  
+
   function res(resFunc) {
       resFunc('Hello');
       console.timeEnd('Promise started'); //displays the duration from point console.time('Promise started') invoked.
   }
-  
+
   function promise() {
       console.time('Promise started');
       return new Promise((resolve) => {
@@ -23,14 +23,14 @@ function checkSomeStuff() {
           setTimeout(res, 2000, resolve)
       })
   }
-  
+
   promise().then(console.log);
-  
+
   console.log(8..toString());
-  
+
   console.log(process.memoryUsage());
   console.log(util.inspect(Object, {depth:null, showHidden: true}))
-  
+
   process.stdout.write('From process.stdout.write')
 }
 // checkSomeStuff()
@@ -66,4 +66,77 @@ function coloredText(){
  console.log("\x1b[4m Underscore \x1b[24m")
 }
 
-coloredText()
+// coloredText()
+
+/* console.assert */
+function quickAssert() {
+  const value = 10;
+  console.assert(value === 10, `Won't be printed`)
+  console.assert(value !== 10, `Error message: ${value} should be 10`)
+  //AssertionError [ERR_ASSERTION]: Error message: 10 should be 10
+}
+// quickAssert()
+
+function countFunctionCall() {
+  function testFunction(){
+    console.count();
+  }
+
+  testFunction(); // default: 1
+  testFunction(); // default: 2
+
+  console.countReset(); // to flush the counter
+
+  function test2(arg1, arg2) {
+    console.count(arg1);
+    console.count(arg2);
+  }
+
+  test2('First arg') // First arg: 1 default: 1
+  test2(undefined,'Second arg') // default: 2 Second arg: 1
+  test2(undefined,'Second arg') // default: 3 Second arg: 1
+}
+// countFunctionCall()
+
+function messageTypes() {
+  console.info(`In firefox - it will be with "i" icon`);
+  console.warn(`Should be with yellow color`);
+  console.error(`Should be with red color`);
+}
+// messageTypes()
+
+function printObj() {
+  const o = {
+    firstLevel: '123213',
+    firstLevel2: {
+      lala: 123,
+      otherObj: {
+        lala2: 123123,
+        arr: [1, 2, 3]
+      }
+    }
+  }
+
+  console.log(o);
+  console.dir(o); // prints in different way in browser
+  // console.dirxml(o); // prints dom elements, but I didn't notice the difference
+}
+// printObj()
+
+function groupPrinting() {
+  const group1 = 'Some group to print:'
+  const group2 = 'Inner group:'
+
+  console.group(group1);
+  console.log('element 1');
+  console.log('element 2');
+  console.group(group2);
+  console.log('inner element 1');
+  console.log('inner element 2');
+  console.groupEnd(group2);
+  console.log('element 3');
+  console.groupEnd(group1);
+}
+// groupPrinting()
+
+console.table({a: 1}); // works in browser
