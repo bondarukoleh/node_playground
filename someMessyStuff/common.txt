@@ -1,5 +1,5 @@
 Word about npm run.
-So when you've set 
+So when you've set
 "scripts": {
   "lint": "eslint ."
 }
@@ -15,5 +15,8 @@ file.
 
 It's the same as we'd run with node explicit. >node ./node_modules/eslint/bin/eslint.js .
 
-So >npm run lint not the same as we run >eslint . It will find a nearest bin, parse a modules we need and run the shebang 
+So >npm run lint not the same as we run >eslint . It will find a nearest bin, parse a modules we need and run the shebang
 executable file.
+
+A note about Node.js:
+Paypal, Uber, Yahoo, Mozilla, Netflix, New York times, Medium - using Node.js.
