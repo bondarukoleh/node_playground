@@ -139,4 +139,19 @@ function groupPrinting() {
 }
 // groupPrinting()
 
-console.table({a: 1}); // works in browser
+// console.table({a: 1}); // works in browser
+
+
+function patterns(){
+  const str = 'This is string';
+  const digit = 123;
+  const floating = 123.123;
+  const o = {a:1, b:2};
+  const j = {"a":"some value", "b":2};
+  console.log('"%s" for a String', str);
+  console.log('"%d" or "%i" for Number', digit, digit);
+  console.log('"%f" for Floating points', floating);
+  console.log('"%o" for an Object', o);
+  console.log('"%j" for an JSON', j);
+}
+// patterns()
