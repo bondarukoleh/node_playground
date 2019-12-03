@@ -21,6 +21,10 @@ enhance the functionality in some way (if fails to instll - not big deal)
 ■ peerDependencies—Requires another module to be installed in order to run
 properly
 
+If one package1 has dependency on myModuleV1 - it will be installed in node_modules. If package2 has dependency
+on myModuleV2 - it will be installed locally in package2 node_modules, to not have two versions of one package stored in
+project node_modules.
+
 peer decencies:
 I expect this module to exist in your project and to be at this version in order for
 my module to work. The most common type of this dependency is a plugin.
