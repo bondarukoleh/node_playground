@@ -36,6 +36,13 @@ But be aware that it will work only with dependency part, not devDependency or o
 
 Updating some dependency.
 npm update someModule --save-dev or npm install someModule@latest --save-dev
+npm update will update only MINOR and PATCH, it won't change MAJOR
+
+Install exect version
+npm i moduleName@1.0.0
+
+Uninstall
+npm uninstall moduleName (same as un, unlink, remove, rm, r)
 
 Semantic versioning
 Given a version number MAJOR.MINOR.PATCH, increment the:
@@ -45,13 +52,18 @@ PATCH version when you make backwards-compatible bug fixes.
 
 So the main idea was next:
 "module": "0.2.1" - only this version should be installed.
-"module": "^0.2.1" - any Patch can be installed.
-"module": "^1.2.1" - any Minor and Patch can be installed.
-"module": "~1.2.1" - any Patch can be installed. (Diff - having the Major version)
+"module": "^0.2.1" - any Patch can be installed. (same as "0.2.x")
+"module": "^1.2.1" - any Minor and Patch can be installed.(Diff - having the Major version)
+"module": "~1.2.1" - any Patch can be installed. (same as 1.2.x)
 "module": "1.0.0 - 1.2.0" - range of versions.
 
 Install exactly version
 npm install someModule --save-dev --save-exact
+
+Check out of a module
+npm view moduleName (same as v, info, show)
+To check some info you are interested in - just add it to command
+e.g. npm v moduleName dependencies - and you'll see the dependencies only.
 
 Adding a cli executable script of your module, to users have ability to run it globally
 we can emulate global installation of module using npm link from module root (under sudo)
