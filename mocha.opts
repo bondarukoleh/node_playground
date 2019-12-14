@@ -5,9 +5,10 @@
 -R spec
 #-r is for --require. run some file Modules required in this manner are expected
 #to do work synchronously; Mocha won't wait for async tasks in a required module to finish.
+# This is for functions. modules, and some work to do
 -r ./helpers/somePretestHelper.js
 #-g is for --grep. Run some spec that machs some word in describe or it
 #-g Second
 #--file - run file before all tests run. Useful if you want to declare, for example,
-# hooks to be run before every test across all other test files.
+# hooks to be run before every test across all other test files. This is for before, beforeEach hooks also
 --file ./helpers/runBeforeSpecs.js
