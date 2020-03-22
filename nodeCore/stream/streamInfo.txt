@@ -68,7 +68,7 @@ An example of that is the fs.createReadStream method.
 Reading data from client request on the server.
 
 A writable stream is an abstraction for a destination to which data can be written.
-allows to write data to the strem
+allows to write data to the stream
 An example of that is the fs.createWriteStream method.
 Writing data to response to the client from the server.
 
@@ -81,10 +81,10 @@ readable.pipe(duplexA)
 duplexA.pipe(duplexB)
 duplexB.pipe(writable)
 
-So since stream is inherited from EventEmiter - we can rely on events that is fired.
-When we create a read strem, createReadStream cuts source on pieces, and collects them
+So since stream is inherited from EventEmitter - we can rely on events that is fired.
+When we create a read stream, createReadStream cuts source on pieces, and collects them
 in inner buffer that it has. When the inner buffer is full, it pushes this chunk to the stream.
-Thats when, "data" event fired, it tells us that chunk data is passed to the stream. 
+That's when, "data" event fired, it tells us that chunk data is passed to the stream.
 
 The fs.createReadStream method takes an options argument that can include a bufferSize property.
 and each chunk in every stream can be specific size - it increases memory usage efficiency for streaming them.

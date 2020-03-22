@@ -2,8 +2,8 @@ Explicit exceptions
 if(badCondition){throw new Error('message')};
 
 THROW:
-- should be used only in synchronous functions, or before async action occeured in async function,
-wich make it still only in sync code;
+- should be used only in synchronous functions, or before async action occurred in async function,
+which make it still only in sync code;
 - always throw as Error or it's child;
 - Don’t throw inside Node-style callback functions; nothing exists on the stack to
 catch it! Instead, deal directly with the error or pass the error off to another
@@ -17,7 +17,7 @@ can be emitted from any EventEmitter in Node. If left unhandled, Node will throw
 Also it's better to provide a new Error with stack trace to all consumers of your code, 
 it will help to understand a trouble sometimes.
 
-Exeption handler
+Exception handler
 Also remember that state (this) can be affected, because your jumping in completely different
 function.
 But what is process.on('uncaughtException', _ => reload()) good for - is to restart your service 

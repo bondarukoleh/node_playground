@@ -8,7 +8,7 @@ Nvm - is a good node version manager easy to update node on UNIX machines.
 npm-windows-upgrade tool should be ok, but you can just download and reinstall it to update node on Windows.
 Also we can use apache and nginx.
 
-You can run app on your own mashine, but you need to rebind traffic from 80 port to port
+You can run app on your own machine, but you need to rebind traffic from 80 port to port
 where your app is. You can do it in Linux via iptables. BUT downside of this technique is 
 that it maps traffic to any process that’s listening to that port.
 Alternative is to change node binaries to bind app to some specific port, don't get the
