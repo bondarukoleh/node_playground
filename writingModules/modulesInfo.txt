@@ -119,3 +119,9 @@ Or you can setup a share private repository in git
 
 Share somewhere on server zip of your library, and give a url to. Then in preinstall somewhere
 npm install http://internal-server.com/myModule.tar.gz --save
+
+To run some command from root directory with root package.json file but make it like runned from some subfolder
+we can do:
+"scripts": {
+  "client": "npm start --prefix my_super_subfolder" 
+}
