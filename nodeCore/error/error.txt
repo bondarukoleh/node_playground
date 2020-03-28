@@ -1,0 +1,9 @@
+ReferenceError - runtime error, variable that you trying to reach doesn't declared, or not exist.
+SyntaxError - parsing, interpret error, js engine doesn't understand what the hell have you written.
+TypeError - occurs when an operation is performed on a wrong data type. Like boolean is expected but a sting is found.
+URIError - object represents an error when a global URI handling function was used in a wrong way
+The EvalError indicates an error regarding the global eval() function. This exception is not thrown by JavaScript
+ anymore, however the EvalError object remains for compatibility.
+InternalError - JS Engine internal error, like when it has too much data to handle and the stack grows way over
+ its critical limit.
+RangeError - This is thrown when a number is outside an allowable range of values.
