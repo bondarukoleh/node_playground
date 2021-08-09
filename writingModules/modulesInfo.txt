@@ -125,3 +125,12 @@ we can do:
 "scripts": {
   "client": "npm start --prefix my_super_subfolder" 
 }
+
+To test your module locally, without publishing it, you can do the same trick with zip file.
+In repo you want to test type:
+>npm pack; (prepublish script doesn't invoked, you need to do it with your hands!!!)
+You'll get the zip file
+
+In repo you want to try out your module:
+>npm i ../path/to/repo/module.zip;
+And you can test it.
