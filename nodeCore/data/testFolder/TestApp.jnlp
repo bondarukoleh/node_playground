@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="0.2 1.0"
+      codebase="http://127.0.0.1/testFolder/"
+      href="TestApp.jnlp">
+    <information>
+        <title>Oleh's App</title>
+        <vendor>Wickedly Smart</vendor>
+        <homepage href="index.html"/>
+        <description>Head First WebStart demo</description>
+        <icon href="TestApp.png"/>
+        <offline-allowed/>
+    </information>
+    <resources>
+        <j2se version="1.3+"/>
+        <jar href="testApp.jar"/>
+    </resources>
+    <application-desc main-class="TestApp"/>
+</jnlp>

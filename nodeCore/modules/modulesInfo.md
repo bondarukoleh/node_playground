@@ -131,3 +131,22 @@ require.resolve(): Resolves a module name to its absolute path
 require.main: The main module
 require.cache: All cached modules
 require.extensions: Available compilation methods for each valid file type, based on its extension
+
+### Some interesting info about modules
+
+From 16th node, we have ability to load modules via prefixes. e.g.
+```js
+const events = require('node:events') /* this ensures that package comes from native node guts, not from node_modules */
+const promises = require('fs/promises') /* destruction not needed no more */
+```
+
+require.cache - is just an object of loaded modules with keys - their full path. Native modules are not there.
+If you need to load new instance of your module - you can delete previous one from cache and that's it.
+
+You should always remember that once required module is in cache, any link data type there only once created for whole
+run, means basically you don't need a singleton pattern in JS. Someone also can mess around with native modules, patching
+them in some package, and if you use native modules in regular way - you can use not native code.
+
+You cannot use __filename or require in .mjs files with ES modules, but you can get same info from import.meta object.
+If you need to use common modules in ES modules files - it's possible. Also possible to download modules from the network
+avoiding the npm registry with your custom module loader.
