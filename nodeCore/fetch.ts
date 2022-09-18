@@ -8,4 +8,3 @@ async function networkTricks() {
     .then(respBody => console.log(respBody))
     .catch(err => console.log(err))
 }
-
