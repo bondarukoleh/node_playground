@@ -1,5 +1,5 @@
 /*Streams can be readable or writable, and are implemented with instances of
-EventEmitter—see chapter 4 for more on events. Streams provide the means for creating
+EventEmitter. Streams provide the means for creating
 data flows between objects, and can be composed with LEGO-like modularity. */
 
 /*

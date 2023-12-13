@@ -35,16 +35,16 @@ const playSong = function (song) {
 const setMusicListeners = function name(that) {
     /* Node event on adding listeners "newListener"*/
     that.on('newListener', (listener) => console.log(`Listener ADDED: ${listener}`));
-    that.on('play', playSong) /* arguments are passed siglently to playsong, cool */
+    that.on('play', playSong) /* arguments are passed silently to play song, cool */
     that.on('stop', function () {
         this.playing = false;
         this.musicalDevice.stop()
     })
     that.on('play', () => console.log('MUSIC STARTED. And some other functionality...'))
-    that.once('play', () => console.log(`Event trigerred only once. First song palayed on ${new Date()}`))
+    that.once('play', () => console.log(`Event triggered only once. First song played on ${new Date()}`))
     that.on('error', function (error) {
         console.log(`Something went wrong. Error: ${error}`);
-        this.musicalDevice.stop(`Error appeares. ${error}`)
+        this.musicalDevice.stop(`Error appears. ${error}`)
     })
 }
 const player = new MusicPlayer(audioDevice)
